@@ -383,7 +383,7 @@
       "name": "button",
       "type": "registry:ui",
       "title": "Button",
-      "description": "The FIVIC button. 32px by default instead of shadcn's 36px, because up and down space is the scarcest thing on these screens. The filled one uses --primary, and there's deliberately no brand variant, because white on the logo teal fails WCAG AA. Sizes are sm (28px, inline and in table rows), default (32px), and lg (36px, for the one main action on a page). Sizes come off the type scale rather than raw px.",
+      "description": "The FIVIC button. 32px by default instead of shadcn's 36px, because up and down space is the scarcest thing on these screens. The filled one uses --primary, and there's deliberately no brand variant, because white on the logo teal fails WCAG AA. Sizes are sm (28px, inline and in table rows), default (32px), and lg (36px, for the one main action on a page). The label is text-label at all three: size changes the control, not the type.",
       "dependencies": [
         "@radix-ui/react-slot",
         "class-variance-authority"
