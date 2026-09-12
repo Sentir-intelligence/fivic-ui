@@ -1,0 +1,43 @@
+/* ---------------------------------------------------------------------------
+   FIVIC OS brand faces, self hosted.
+
+   Nothing in this app talks to another origin at runtime, so there's no
+   Google Fonts hotlink here. Run `node scripts/fetch-fonts.mjs` once to pull
+   the files into public/fonts/. Both families are SIL Open Font License 1.1,
+   so self hosting and subsetting are fine.
+
+   Bai Jamjuree is Fivic's own web face and it's DISPLAY ONLY. Its digits are
+   proportional, so it never sets a number and never shows up below 20px.
+   Inter does all the UI and data, with tabular figures on.
+   --------------------------------------------------------------------------- */
+
+@font-face {
+  font-family: "Bai Jamjuree";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/fonts/bai-jamjuree-600.woff2") format("woff2");
+  /* Latin and Latin Extended-A only. Fivic doesn't publish anything in Thai. */
+  unicode-range: U+0000-00FF, U+0100-017F, U+2000-206F, U+2122, U+2212;
+}
+
+@font-face {
+  font-family: "Bai Jamjuree";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/bai-jamjuree-700.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0100-017F, U+2000-206F, U+2122, U+2212;
+}
+
+/* Inter as a variable font. One file covers 400 through 700, which is smaller
+   than shipping four static weights, and it means we can reach 450 or 550
+   later without another download. */
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/inter-variable.woff2") format("woff2-variations");
+  unicode-range: U+0000-00FF, U+0100-017F, U+2000-206F, U+2122, U+2212;
+}
