@@ -1,14 +1,14 @@
 /* ---------------------------------------------------------------------------
    FIVIC OS brand faces, self hosted.
 
-   Nothing in this app talks to another origin at runtime, so there's no
-   Google Fonts hotlink here. Run `node scripts/fetch-fonts.mjs` once to pull
-   the files into public/fonts/. Both families are SIL Open Font License 1.1,
-   so self hosting and subsetting are fine.
+   Nothing in this app calls out to anyone else while it's running, so none of
+   this is loaded off Google's servers. Run `node scripts/fetch-fonts.mjs`
+   once to pull the files into public/fonts/. Both families are SIL Open Font
+   License 1.1, so serving our own copies is fine.
 
-   Bai Jamjuree is Fivic's own web face and it's DISPLAY ONLY. Its digits are
-   proportional, so it never sets a number and never shows up below 20px.
-   Inter does all the UI and data, with tabular figures on.
+   Bai Jamjuree is fivic's own web face and it only goes above 20px. Its
+   digits are all different widths, so it never sets a number. Inter does all
+   the UI and data, with tabular figures on.
    --------------------------------------------------------------------------- */
 
 @font-face {

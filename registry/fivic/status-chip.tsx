@@ -8,8 +8,8 @@ import { cn } from "@/lib/utils"
  *
  * State is the most repeated thing in the product, and almost every list row
  * carries one. Leave it to individual screens and the same state ends up
- * named three ways and coloured four, so this component is the one
- * vocabulary.
+ * named three ways and coloured four, so it gets named and coloured here
+ * instead.
  *
  * Tone is kept separate from wording on purpose. `tone` picks the colour, and
  * the label comes in as children, so the words can differ from one surface to

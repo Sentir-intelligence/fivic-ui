@@ -9,8 +9,8 @@ import { cn } from "@/lib/utils"
  *
  * Two things are different from stock shadcn and both are on purpose.
  *
- * 1. It's 32px by default, not 36px. Vertical space is the scarcest thing on
- *    these screens.
+ * 1. It's 32px by default, not 36px. Up and down space is the scarcest thing
+ *    on these screens.
  * 2. The filled variant uses --primary (#177B91), never --brand (#2997B0).
  *    White on the logo teal is 3.42:1 and fails AA. There's no `brand`
  *    variant here on purpose, because the brand colour carries identity, not
