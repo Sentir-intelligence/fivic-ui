@@ -7,9 +7,9 @@
  *
  *   node scripts/fetch-fonts.mjs
  *
- * This runs at SETUP time, not at runtime. The shipped app still doesn't talk
- * to another origin: the woff2 files come off our own origin, and they get
- * committed with the rest of the app.
+ * This runs once at setup, not while the app is running. The shipped app
+ * still calls out to nobody: the woff2 files come off our own server, and
+ * they get committed with the rest of the app.
  *
  * Both families are SIL Open Font License 1.1.
  *   Bai Jamjuree, by Cadson Demak

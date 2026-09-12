@@ -56,7 +56,7 @@ const out = `/* ================================================================
 @import "tailwindcss";
 @import "tw-animate-css";
 
-/* Self-hosted. FIVIC OS makes no third-party requests at runtime. */
+/* Our own copies. A FIVIC app never calls out to another server. */
 @import "./fonts/fonts.css";
 
 @custom-variant dark (&:is(.dark *));

@@ -1,70 +1,69 @@
 # FIVIC UI
 
-The design system for FIVIC OS, the operating system Sentir is building for
+The design system for FIVIC OS, the operating system sentir is building for
 Flooring Innovations Victoria. It's a shadcn registry, and the registry is
-just this public GitHub repo. No build, no deploy, no registry server sitting
-somewhere. The shadcn CLI reads `registry.json` and pulls the files straight
-out of here.
+just this public github repo, so there's nothing to build, nothing to deploy
+and no server to keep running. The shadcn CLI reads `registry.json` and pulls
+files straight out of here.
 
-Components get copied into the app rather than installed as a locked package,
-so the team owns what it pulls and can extend it, while the brand layer stays
-the same everywhere.
+Components get copied into the app instead of installed as a locked package,
+so the team owns what it pulls and can change it, and the brand layer still
+stays the same everywhere.
 
 This repo is public so private app repos can install from it without tokens.
-Only the shared brand layer is open. Application code stays private.
+Only the brand layer is open, application code stays private.
 
 ## What's in here
 
-- **Tokens.** The Fivic brand as CSS variables, shipped by the `theme` item.
-  Five ramps, the full semantic layer, light and dark, a 14px type scale and
-  workspace density.
-- **Fonts.** The `@font-face` rules plus a setup time fetch script, because
-  FIVIC OS doesn't talk to another origin at runtime.
+- **Tokens.** The fivic brand as CSS variables, shipped by the `theme` item.
+  Five ramps, every named colour in light and dark, a 14px type scale and
+  tighter spacing than shadcn ships.
+- **Fonts.** The `@font-face` rules and a script you run once at setup,
+  because a FIVIC app never calls out to another server.
 - **Components.** Branded shadcn components under `registry/fivic/`.
 - **Agent rules.** `AGENTS.md`, installed into each app and repo so Claude
-  Code and Cursor default to this registry.
+  Code and Cursor reach for this registry first.
 - **Catalog.** `registry.json` at the root says what's installable, and it's
-  the single source of truth for every token.
-- **Preview.** `preview.html` is a component sheet showing the ramps, the type
-  scale and the components in both skins. Open it straight in a browser, no
-  build. Every name, quantity and figure on it is invented to exercise the
-  components, none of it is Fivic data.
+  where every token actually lives.
+- **Preview.** `preview.html` shows the ramps, the type scale and the
+  components in both skins. Open it straight in a browser. Every name,
+  quantity and figure on it is made up to give the components something to
+  hold, none of it is fivic data.
 
 ## Brand reference
 
-Worked out in OKLCH from the Fivic logo artwork and fivic.net. Every
-foreground and background pair below meets WCAG 2.2 AA in both modes. That's
-measured, not assumed.
+Worked out in OKLCH from the fivic logo artwork and fivic.net. Every pair
+below meets WCAG 2.2 AA in both modes. That's measured, not assumed.
 
 | Role | Token | Light | Dark |
 |------|-------|-------|------|
 | Identity, nothing written on it | `--brand` | `#2997B0` | `#3FA7C1` |
-| Interactive, carries a label | `--primary` | `#177B91` | `#3FA7C1` |
+| Anything carrying a label | `--primary` | `#177B91` | `#3FA7C1` |
 | Page background | `--background` | `#F8FAFC` | `#061116` |
 | Panels and rows | `--card` | `#FFFFFF` | `#152227` |
 | Body text | `--foreground` | `#061116` | `#F2F5F6` |
 | Search hit inside a document | `--highlight` | `#FCD8AC` | `#7E4A00` |
 
-Brand hue is 217, taken off the logo. Neutrals sit at hue 225, nudged toward
-the colour of the nav bar on fivic.net, so the grey surfaces read as Fivic
-instead of generic charcoal. Warning is hue 73 to match the amber already on
-their site. The cyan on fivic.net (`#00BCD4`) isn't a second brand colour.
-It's six degrees off the logo hue at a higher lightness, so it lands on
+Brand hue is 217, taken off the logo. The greys sit at hue 225, pulled a
+little toward the colour of the nav bar on fivic.net so they read as fivic
+rather than as flat charcoal. Warning is hue 73, which matches the amber
+already on their site. The cyan on fivic.net (`#00BCD4`) isn't a second brand
+colour, it's six degrees off the logo hue and lighter, so it lands on
 `brand-400`.
 
-Type is Bai Jamjuree for display at 20px and up, Inter for all UI and data.
-Radius is `0.25rem`, which comes off the hard corners in the logo.
+Type is Bai Jamjuree for display at 20px and up, Inter for everything else.
+Radius is `0.25rem`, off the hard corners in the logo.
 
 ### The two rules that matter most
 
-**`--brand` and `--primary` are different colours on purpose.** White text on
-the logo teal is 3.42:1 and fails AA. White on `--primary` is 4.91:1 and
-passes. The brand colour carries identity, never a label.
+**`--brand` and `--primary` are different colours on purpose.** White on the
+logo teal is 3.42:1 and fails AA. White on `--primary` is 4.91:1 and passes.
+The brand colour carries identity, never a label.
 
-**Bai Jamjuree never sets a number.** Its digits are proportional. At 40px
-the "1" is 14.3px against 25.8px for the "0", so a column of figures doesn't
-line up and can't be scanned. Inter carries every number, with tabular
-figures on by default in the base layer.
+**Bai Jamjuree never sets a number.** Its digits are all different widths. At
+40px the "1" is 14.3px against 25.8px for the "0", so a column of figures
+doesn't line up and can't be read by shape. Inter carries every number, with
+tabular figures on by default.
 
 ## For developers: installing in an app
 
@@ -98,9 +97,9 @@ next to its `components.json`. The CLI works out where `src/globals.css` and
 drops everything in the wrong place.
 
 `agents` is the exception. `AGENTS.md` goes at the **repo root**, next to
-`CLAUDE.md`, so every agent session picks it up no matter which package it's
-in. Have `CLAUDE.md` point at it rather than repeat it, otherwise the two
-drift and you've got two answers to the same question.
+`CLAUDE.md`, so every agent session picks it up whichever package it's in.
+Have `CLAUDE.md` point at it rather than repeat it, or the two drift and
+you've got two answers to the same question.
 
 ### Pin to a tag
 
@@ -108,7 +107,7 @@ drift and you've got two answers to the same question.
 npx shadcn add Sentir-intelligence/fivic-ui/button#v0.1.0
 ```
 
-Review updates with `npx shadcn add ... --diff` before applying them.
+Check updates with `npx shadcn add ... --diff` before applying them.
 
 ### Using the mark
 
@@ -122,16 +121,16 @@ import { FivicLogo, FivicMark } from "@/components/brand/logo"
 <FivicMark className="h-4 w-auto" title={null} />       {/* decorative */}
 ```
 
-The full lockup isn't in here. The wordmark reverses to white and we couldn't
-rebuild it from the raster artwork we were given. Get the vector files off
-Fivic and add a `variant="full"` when they land.
+The full lockup isn't in here. The wordmark turns white, so there was nothing
+to trace on the white artwork we were given. Get the vector files off fivic
+and add a `variant="full"` when they land.
 
 ## For maintainers
 
 ### Change a token
 
-1. Edit the value in the `theme` item in `registry.json`. That's the source
-   of truth.
+1. Edit the value in the `theme` item in `registry.json`. That's where tokens
+   live.
 2. Run `node scripts/sync-globals.mjs` to rebuild `app/globals.css`. Don't
    edit that file by hand, the script overwrites it. CI can guard it with
    `node scripts/sync-globals.mjs --check`.
@@ -150,26 +149,26 @@ git tag v0.2.0 && git push --tags
 
 Put the file under `registry/fivic/`, then register it in `registry.json`
 with `name`, `type`, `title`, `description` and `files`. The description is
-what the CLI and the coding agents read when they're deciding whether to use
-it, so write it for them. Say what it's for and what's unusual about it, not
+what the CLI and the coding agents read when they're working out whether to
+use it, so write it for them. Say what it's for and what's odd about it, not
 just what it's called.
 
 ## For coding agents
 
 Install `Sentir-intelligence/fivic-ui/agents` into every FIVIC repo. It drops
-an `AGENTS.md` covering registry first, theme ordering, the `--brand` versus
+an `AGENTS.md` covering registry first, theme ordering, the `--brand` against
 `--primary` split, no colour values in components, tabular numbers, the 20px
-typeface boundary, density, both modes in one commit, and the no third party
-requests rule.
+typeface boundary, density, both modes in one commit, and the rule about not
+calling out to another server.
 
 ## Status
 
 `v0.1.0`, draft. Still open:
 
 - Fivic's vector logo artwork, for the full lockup.
-- Chart colours are provisional. Five hues are reserved and they pass
-  contrast, but the series palette should be settled against real quote and
-  pipeline data rather than guessed at now.
+- Chart colours are a placeholder. Five hues are reserved and they pass
+  contrast, but the set should be settled against real quote and pipeline
+  data rather than guessed at now.
 - Domain components, so the document row, the citation, the quantity table,
   aren't here yet on purpose. They wait until the chat surface is settled, so
   the vocabulary comes out of the real workflow instead of being invented.
