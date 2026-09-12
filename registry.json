@@ -7,7 +7,7 @@
       "name": "theme",
       "type": "registry:style",
       "title": "FIVIC Theme",
-      "description": "The Flooring Innovations Victoria brand as tokens, worked out in OKLCH from the logo and fivic.net. Install this first, once per app, before anything else. Five ramps on a shared lightness spine, the full semantic layer in light and dark, a 14px type scale, 4px radius and workspace density. Watch out for one thing: --brand (#2997B0) and --primary (#177B91) are different colours on purpose. Brand is identity only, primary carries anything with words on it, because white on the logo teal fails WCAG AA. See AGENTS.md. Install the fonts item alongside this.",
+      "description": "The Flooring Innovations Victoria brand as tokens, worked out in OKLCH from the logo and fivic.net. Install this first, once per app, before anything else. Five ramps built on the same set of lightness steps, every named colour in light and dark, a 14px type scale, 4px radius and tighter spacing than shadcn ships. One thing to watch: --brand (#2997B0) and --primary (#177B91) are different colours on purpose. Brand is identity only and primary carries anything with words on it, because white on the logo teal fails WCAG AA. See AGENTS.md. Install the fonts item alongside this.",
       "dependencies": [
         "tw-animate-css"
       ],
@@ -339,7 +339,7 @@
       "name": "fonts",
       "type": "registry:file",
       "title": "Self-hosted Brand Fonts",
-      "description": "@font-face rules for Bai Jamjuree, which is display only at 20px and up and never sets a number, and Inter variable, which does all UI and data with tabular figures. No Google Fonts hotlink, because FIVIC OS doesn't talk to another origin at runtime. Comes with a setup time script that pulls the woff2 files down into public/fonts/. Both families are SIL Open Font License 1.1.",
+      "description": "@font-face rules for Bai Jamjuree, which only goes above 20px and never sets a number, and Inter variable, which does all the UI and data with tabular figures. Nothing is loaded off Google's servers, because a FIVIC app never calls out to anyone else while it's running. Comes with a script you run once at setup that pulls the woff2 files into public/fonts/. Both families are SIL Open Font License 1.1.",
       "files": [
         {
           "path": "registry/fivic/fonts.css",
@@ -357,7 +357,7 @@
       "name": "agents",
       "type": "registry:file",
       "title": "Agent Conventions",
-      "description": "Rules for Claude Code and Cursor working in FIVIC OS. Install from this registry, theme first, don't confuse --brand with --primary, never write a colour value in a component, numbers are always tabular, Bai Jamjuree never sets a number, density is 32px not 36px, both modes in one commit, nothing talks to another origin. Put this in every app and every repo.",
+      "description": "Rules for Claude Code and Cursor working in FIVIC OS. Install from this registry, theme first, don't mix up --brand and --primary, never write a colour value in a component, numbers are always tabular, Bai Jamjuree never sets a number, 32px controls instead of 36px, both modes in one commit, and nothing calls out to another server. Put this in every app and every repo.",
       "files": [
         {
           "path": "registry/rules/AGENTS.md",
@@ -370,7 +370,7 @@
       "name": "logo",
       "type": "registry:component",
       "title": "Brand Mark",
-      "description": "The Fivic mark as a React component. It draws from currentColor, so one component covers brand teal on light, white on dark, and muted when something's disabled. FivicMark for the raw geometry, FivicLogo for the mark at --brand. The full lockup with the wordmark isn't in here: that needs Fivic's vector artwork, which we haven't got yet.",
+      "description": "The fivic mark as a React component. It draws from currentColor, so one component covers brand teal on light, white on dark, and muted when something's turned off. FivicMark for the raw shape, FivicLogo for the mark at --brand. The full lockup with the wordmark isn't in here, that needs fivic's vector artwork, which we haven't got yet.",
       "files": [
         {
           "path": "registry/fivic/logo.tsx",
@@ -383,7 +383,7 @@
       "name": "button",
       "type": "registry:ui",
       "title": "Button",
-      "description": "The FIVIC button. 32px by default instead of shadcn's 36px, because vertical space is the scarcest thing on these screens. The filled variant uses --primary, and there's deliberately no brand variant, because white on the logo teal fails WCAG AA. Sizes are sm (28px, inline and in table rows), default (32px), and lg (36px, for the one primary action on a page).",
+      "description": "The FIVIC button. 32px by default instead of shadcn's 36px, because up and down space is the scarcest thing on these screens. The filled one uses --primary, and there's deliberately no brand variant, because white on the logo teal fails WCAG AA. Sizes are sm (28px, inline and in table rows), default (32px), and lg (36px, for the one main action on a page).",
       "dependencies": [
         "@radix-ui/react-slot",
         "class-variance-authority"
@@ -400,7 +400,7 @@
       "name": "status-chip",
       "type": "registry:ui",
       "title": "Status Chip",
-      "description": "The single status vocabulary for FIVIC OS. Almost every list row carries a state, and without one component the same state ends up named three ways and coloured four. Tones are success (settled), warning (needs a person to look at it), danger (rejected or failed), info (the system did it, nobody's confirmed it yet), and neutral. Measured at 4.5:1 or better in both modes.",
+      "description": "The one place state gets named and coloured in FIVIC OS. Almost every list row carries a state, and without a single component the same state ends up named three ways and coloured four. Tones are success (settled), warning (needs a person to look at it), danger (rejected or failed), info (the system did it, nobody's confirmed it yet), and neutral. Measured at 4.5:1 or better in both modes.",
       "dependencies": [
         "class-variance-authority"
       ],
