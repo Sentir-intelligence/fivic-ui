@@ -16,9 +16,10 @@ import { cn } from "@/lib/utils"
  *    variant here on purpose, because the brand colour carries identity, not
  *    labels. See AGENTS.md.
  *
- * Sizes come off the scale (`text-label`, `text-body-sm`) rather than raw px,
- * which is the rule AGENTS.md sets. `text-label` already carries weight 500,
- * so there is no `font-medium` here.
+ * The label is `text-label` at every size, and only the height and the side
+ * padding change. Size is a control property, not a type property: bumping
+ * the label a step when the button gets taller puts a combination on screen
+ * that isn't in the scale, and then nothing else can match it.
  */
 const buttonVariants = cva(
   "inline-flex items-center justify-center gap-1.5 whitespace-nowrap rounded-md " +
@@ -43,7 +44,7 @@ const buttonVariants = cva(
         /** 32px. The default everywhere else. */
         default: "h-8 px-3",
         /** 36px. The one primary action on a page, and nothing else. */
-        lg: "h-9 px-4 text-body-sm",
+        lg: "h-9 px-4",
         icon: "size-8 px-0",
         "icon-sm": "size-7 px-0",
       },

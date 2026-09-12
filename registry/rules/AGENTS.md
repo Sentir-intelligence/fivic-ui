@@ -62,6 +62,11 @@ for no reason. The base styles turn `tabular-nums` on for `table`, `td`,
 `th`, `input[type=number]`, `output` and `time`. Anything with numbers in it
 outside those needs `data-numeric` on it, or the `tabular` class.
 
+Figma can't do this bit. The plugin API only reads `openTypeFeatures`, it
+can't set it, so the fivic text styles in the Figma file don't carry tabular
+figures and a column of numbers in a mockup will be proportional even where
+the built screen has it right. Take the rule from here, not from the picture.
+
 ## Two typefaces, split at 20px
 
 - Bai Jamjuree (`font-display`) is fivic's own face and it only goes 20px and
@@ -76,6 +81,11 @@ outside those needs `data-numeric` on it, or the `tabular` class.
 Use the scale tokens rather than raw sizes, so `text-display`, `text-title`,
 `text-body`, `text-label`, `text-caption`, `text-overline`. Base size is
 14px, not 16px, because this is a workspace rather than a website.
+
+A size prop changes the control, not the type. A button gets taller and wider
+at `lg`, and its label stays on the same step. If you find yourself wanting a
+weight or a size that isn't in the scale, that's the signal to add a step to
+the theme, not to write it inline on one component.
 
 ## The density is deliberate
 
