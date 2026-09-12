@@ -57,15 +57,15 @@ together.
 ## Numbers are always tabular
 
 Columns of figures get read by shape, not one number at a time, and
-bai jamjuree gives every digit a different width, so the shape moves around
+Bai Jamjuree gives every digit a different width, so the shape moves around
 for no reason. The base styles turn `tabular-nums` on for `table`, `td`,
 `th`, `input[type=number]`, `output` and `time`. Anything with numbers in it
 outside those needs `data-numeric` on it, or the `tabular` class.
 
 ## Two typefaces, split at 20px
 
-- Bai Jamjuree (`font-display`) is fivic's own face and it only goes above
-  20px, on headings and brand moments. At 40px its "1" is 14.3px wide against
+- Bai Jamjuree (`font-display`) is fivic's own face and it only goes 20px and
+  up, on headings and brand moments. At 40px its "1" is 14.3px wide against
   25.8px for the "0", so it never sets a number. Putting `.font-display` on
   something also switches tabular figures off, because the face hasn't got
   them.

@@ -15,10 +15,14 @@ import { cn } from "@/lib/utils"
  *    White on the logo teal is 3.42:1 and fails AA. There's no `brand`
  *    variant here on purpose, because the brand colour carries identity, not
  *    labels. See AGENTS.md.
+ *
+ * Sizes come off the scale (`text-label`, `text-body-sm`) rather than raw px,
+ * which is the rule AGENTS.md sets. `text-label` already carries weight 500,
+ * so there is no `font-medium` here.
  */
 const buttonVariants = cva(
   "inline-flex items-center justify-center gap-1.5 whitespace-nowrap rounded-md " +
-    "text-[12.5px] font-medium transition-colors " +
+    "text-label transition-colors " +
     "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring " +
     "disabled:pointer-events-none disabled:opacity-50 " +
     "[&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
@@ -35,11 +39,11 @@ const buttonVariants = cva(
       },
       size: {
         /** 28px. Inline, and inside table rows. */
-        sm: "h-7 px-2.5 text-[12px]",
+        sm: "h-7 px-2.5",
         /** 32px. The default everywhere else. */
         default: "h-8 px-3",
         /** 36px. The one primary action on a page, and nothing else. */
-        lg: "h-9 px-4 text-[13px]",
+        lg: "h-9 px-4 text-body-sm",
         icon: "size-8 px-0",
         "icon-sm": "size-7 px-0",
       },
