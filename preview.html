@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FIVIC UI preview</title>
+<!--
+  A component sheet for this registry. Open it straight in a browser, no build.
+
+  Values here are copied out of registry.json for a dependency-free preview, so
+  if you change a token, run `node scripts/sync-globals.mjs` and update the
+  swatches below. The full design reference with the contrast audit lives
+  outside this repo.
+
+  This page hotlinks Google Fonts so it works standalone. A FIVIC app never
+  does: see registry/fivic/fonts.css.
+-->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@400;600;700&family=Inter:wght@400;500;600&display=swap">
+<style>
+  :root{--pg-bg:#F8FAFC;--pg-card:#fff;--pg-ink:#061116;--pg-ink2:#5E686C;--pg-line:#D0D7D9;--pg-sunk:#F2F5F6;color-scheme:light}
+  @media (prefers-color-scheme:dark){:root:not([data-theme=light]){--pg-bg:#061116;--pg-card:#152227;--pg-ink:#F2F5F6;--pg-ink2:#9EA6AA;--pg-line:#2F3B41;--pg-sunk:#0C1A1F;color-scheme:dark}}
+  :root[data-theme=dark]{--pg-bg:#061116;--pg-card:#152227;--pg-ink:#F2F5F6;--pg-ink2:#9EA6AA;--pg-line:#2F3B41;--pg-sunk:#0C1A1F;color-scheme:dark}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--pg-bg);color:var(--pg-ink);font:14px/1.5 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1000px;margin:0 auto;padding-inline:20px;padding-block:44px 80px}
+  h1{font-family:"Bai Jamjuree",sans-serif;font-weight:700;font-size:clamp(28px,5vw,40px);letter-spacing:-.02em;margin:0 0 10px;text-wrap:balance}
+  h2{font-family:"Bai Jamjuree",sans-serif;font-weight:600;font-size:22px;letter-spacing:-.015em;margin:44px 0 14px;padding-bottom:9px;border-bottom:1px solid var(--pg-line)}
+  p{margin:0 0 16px;max-width:68ch;color:var(--pg-ink2)}
+  code{font-family:ui-monospace,Menlo,monospace;font-size:.9em}
+  .note{padding:11px 14px;border:1px solid #FCD8AC;background:#FFF6EA;color:#7E4A00;border-radius:4px;font-size:12.5px;max-width:none;line-height:1.55}
+  @media (prefers-color-scheme:dark){:root:not([data-theme=light]) .note{border-color:#7E4A00;background:#392100;color:#F4BE77}}
+  :root[data-theme=dark] .note{border-color:#7E4A00;background:#392100;color:#F4BE77}
+  .ramp{margin-bottom:16px}
+  .ramp b{font-size:12.5px;display:block;margin-bottom:6px}
+  .ramp b em{font-style:normal;font-weight:400;color:var(--pg-ink2);margin-left:8px;font-size:11px}
+  .sw{display:grid;grid-template-columns:repeat(11,1fr);gap:3px}
+  .sw div{border-radius:2px;overflow:hidden;border:1px solid var(--pg-line);text-align:center}
+  .sw i{display:block;height:38px}
+  .sw span{display:block;font:9.5px/1.6 ui-monospace,Menlo,monospace;padding:3px 0;background:var(--pg-card)}
+  .skins{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media (max-width:760px){.skins{grid-template-columns:1fr}.sw{grid-template-columns:repeat(6,1fr)}}
+  .skin{--bg:#F8FAFC;--card:#fff;--fg:#061116;--mut:#5E686C;--bd:#D0D7D9;--bds:#E3E8EA;--in:#8A9498;
+        --pri:#177B91;--prifg:#fff;--brand:#2997B0;--acc:#E3E8EA;
+        --wbg:#FFF6EA;--wfg:#7E4A00;--wbd:#FCD8AC;--obg:#F0FBF2;--ofg:#1F673A;--obd:#C2EBCB;
+        --ibg:#EFFAFD;--ifg:#126273;--ibd:#BEE7F2;--hl:#FCD8AC;--hlfg:#392100;
+        border:1px solid var(--pg-line);border-radius:4px;overflow:hidden}
+  .skin.dark{--bg:#061116;--card:#152227;--fg:#F2F5F6;--mut:#9EA6AA;--bd:#2F3B41;--bds:#29353A;--in:#687276;
+        --pri:#3FA7C1;--prifg:#0B2B33;--brand:#3FA7C1;--acc:#29353A;
+        --wbg:#392100;--wfg:#F4BE77;--wbd:#7E4A00;--obg:#0F2E19;--ofg:#9ADBAB;--obd:#1F673A;
+        --ibg:#0B2B33;--ifg:#94D5E7;--ibd:#126273;--hl:#7E4A00;--hlfg:#FFEBD3}
+  .skin>h3{margin:0;padding:8px 13px;font:600 10px/1.4 Inter,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--pg-ink2);background:var(--pg-sunk);border-bottom:1px solid var(--pg-line)}
+  .stage{background:var(--bg);color:var(--fg);padding:16px;display:grid;gap:13px}
+  .card{background:var(--card);border:1px solid var(--bd);border-radius:4px}
+  .card>h4{margin:0;padding:9px 13px;border-bottom:1px solid var(--bds);font:600 12px/1.4 Inter,sans-serif;display:flex;gap:8px}
+  .card>h4 em{margin-left:auto;font-style:normal;font-weight:400;color:var(--mut);font-variant-numeric:tabular-nums}
+  .row{display:grid;grid-template-columns:1fr auto;gap:3px 10px;align-items:center;padding:8px 13px;border-bottom:1px solid var(--bds);min-height:36px}
+  .row:last-child{border-bottom:0}
+  .row.sel{background:var(--acc);box-shadow:inset 2px 0 0 var(--brand)}
+  .row b{font:500 12.5px/1.35 Inter,sans-serif;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .row s{grid-column:1;text-decoration:none;font-size:11px;color:var(--mut);font-variant-numeric:tabular-nums}
+  .chip{grid-row:1/span 2;grid-column:2;font:600 10px/1.5 Inter,sans-serif;letter-spacing:.04em;text-transform:uppercase;padding:2px 6px;border-radius:2px;border:1px solid transparent;white-space:nowrap}
+  .chip.w{background:var(--wbg);color:var(--wfg);border-color:var(--wbd)}
+  .chip.o{background:var(--obg);color:var(--ofg);border-color:var(--obd)}
+  .chip.i{background:var(--ibg);color:var(--ifg);border-color:var(--ibd)}
+  .btns{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+  .btn{height:32px;padding:0 12px;border-radius:4px;font:500 12.5px/1 Inter,sans-serif;display:inline-flex;align-items:center;border:1px solid transparent;background:none;color:var(--fg);cursor:default}
+  .btn.p{background:var(--pri);color:var(--prifg)}
+  .btn.s{border-color:var(--bd)}
+  .btn.g{color:var(--mut)}
+  .btn.sm{height:28px;padding:0 9px;font-size:12px}
+  .fld{height:32px;flex:1 1 150px;display:flex;align-items:center;padding:0 10px;border:1px solid var(--in);border-radius:4px;background:var(--card);color:var(--mut);font-size:12.5px}
+  table{width:100%;border-collapse:collapse;font-size:12px;font-variant-numeric:tabular-nums}
+  th{text-align:left;font:600 9.5px/1.5 Inter,sans-serif;letter-spacing:.07em;text-transform:uppercase;color:var(--mut);padding:6px 13px;border-bottom:1px solid var(--bd)}
+  td{padding:0 13px;height:34px;border-bottom:1px solid var(--bds)}
+  tfoot td{font-weight:600;border-bottom:0;border-top:1px solid var(--bd)}
+  .r{text-align:right}
+  mark{background:var(--hl);color:var(--hlfg);padding:0 2px;border-radius:1px}
+  .q{padding:10px 13px;font-size:12px;line-height:1.6;color:var(--mut)}
+  .q b{color:var(--fg)}
+  .type{border:1px solid var(--pg-line);border-radius:4px;background:var(--pg-card);overflow:hidden}
+  .type div{display:grid;grid-template-columns:128px 1fr;border-bottom:1px solid var(--pg-line)}
+  .type div:last-child{border-bottom:0}
+  .type dt{margin:0;padding:12px 14px;background:var(--pg-sunk);font:600 11px/1.4 ui-monospace,Menlo,monospace;color:var(--pg-ink2);display:flex;align-items:center}
+  .type dd{margin:0;padding:12px 16px;display:flex;align-items:center;min-width:0;overflow-wrap:anywhere}
+  .bai{font-family:"Bai Jamjuree",sans-serif}
+  @media (max-width:760px){.type div{grid-template-columns:1fr}.type dt{background:none;padding-bottom:0}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>FIVIC UI</h1>
+  <p>Component sheet for the <code>fivic-ui</code> registry. Install with
+     <code>npx shadcn add Sentir-intelligence/fivic-ui/theme</code>.</p>
+  <p class="note"><b>Every name, quantity, rate and dollar figure below is invented</b> to exercise the
+     components. None of it is Fivic data.</p>
+
+  <h2>Colour</h2>
+  <p>Five ramps on one lightness spine, so <code>brand-700</code>, <code>success-700</code> and
+     <code>danger-700</code> carry the same weight. Brand hue 217 comes off the logo, neutrals sit at 225.</p>
+  <div id="ramps"></div>
+
+  <h2>Type</h2>
+  <p>Hard boundary at 20px. Bai Jamjuree above it, Inter below it and on every number.
+     Base size is 14px.</p>
+  <dl class="type">
+    <div><dt>display 32/38</dt><dd><span class="bai" style="font:700 32px/38px 'Bai Jamjuree',sans-serif;letter-spacing:-.02em">Werribee Secondary</span></dd></div>
+    <div><dt>title 20/26</dt><dd><span class="bai" style="font:600 20px/26px 'Bai Jamjuree',sans-serif;letter-spacing:-.01em">Finishes schedule</span></dd></div>
+    <div><dt>heading 16/22</dt><dd><span style="font:600 16px/22px Inter,sans-serif">Ground floor, east wing</span></dd></div>
+    <div><dt>body 14/21</dt><dd><span style="font:400 14px/21px Inter,sans-serif">Sheet vinyl to all wet areas, coved 100mm to walls, welded seams throughout.</span></dd></div>
+    <div><dt>label 12/16</dt><dd><span style="font:500 12px/16px Inter,sans-serif;letter-spacing:.01em">Quantity (m²)</span></dd></div>
+    <div><dt>overline 11/15</dt><dd><span style="font:600 11px/15px Inter,sans-serif;letter-spacing:.08em;text-transform:uppercase">Preferred supplier</span></dd></div>
+  </dl>
+
+  <h2>Components, both skins</h2>
+  <p>Identical markup, different token values. Controls are 32px and rows are 36px, tighter than
+     shadcn ships.</p>
+  <div class="skins">
+    <div class="skin"><h3>Light</h3><div class="stage" id="a"></div></div>
+    <div class="skin dark"><h3>Dark</h3><div class="stage" id="b"></div></div>
+  </div>
+</div>
+
+<script>
+const RAMPS={
+ brand:["#EFFAFD","#DDF3FA","#BEE7F2","#94D5E7","#61BBD2","#3FA7C1","#2997B0","#177B91","#126273","#154D5A","#0B2B33"],
+ neutral:["#F8FAFC","#F2F5F6","#E3E8EA","#D0D7D9","#9EA6AA","#7C868A","#5E686C","#434E53","#29353A","#152227","#061116"],
+ success:["#F0FBF2","#DFF6E4","#C2EBCB","#9ADBAB","#6AC285","#4BB06D","#399F5D","#27834A","#1F673A","#1C512F","#0F2E19"],
+ warning:["#FFF6EA","#FFEBD3","#FCD8AC","#F4BE77","#E29C30","#D18600","#C07500","#9F5E00","#7E4A00","#623B00","#392100"],
+ danger:["#FFF2F0","#FFE4DF","#FFCBC3","#FFA99E","#FF7F73","#F26459","#DF534A","#BA3F38","#93312C","#732924","#431613"]};
+const STEPS=[50,100,200,300,400,500,600,700,800,900,950];
+const HUES={brand:"hue 217, off the logo. 600 is --brand, 700 is --primary",
+ neutral:"hue 225, matched to the nav bar on fivic.net",
+ success:"hue 152",warning:"hue 73, matched to the amber on their site",danger:"hue 27"};
+document.getElementById("ramps").innerHTML=Object.keys(RAMPS).map(k=>
+ `<div class="ramp"><b>${k}<em>${HUES[k]}</em></b><div class="sw">`+
+ RAMPS[k].map((h,i)=>`<div><i style="background:${h}"></i><span>${STEPS[i]}</span></div>`).join("")+
+ `</div></div>`).join("");
+
+const STAGE=`
+<div class="card">
+  <h4>Documents<em>14 files · 3 unsorted</em></h4>
+  <div class="row sel"><b>Architectural set, revision D.pdf</b><s>Drawings · 42 pages · 9 Sep</s><span class="chip i">Sorted</span></div>
+  <div class="row"><b>Finishes schedule, addendum 2.xlsx</b><s>Schedules · 6 sheets · 10 Sep</s><span class="chip o">Verified</span></div>
+  <div class="row"><b>Unnamed upload.docx</b><s>Unsorted · 11 pages · 11 Sep</s><span class="chip w">Needs review</span></div>
+</div>
+<div class="card">
+  <h4>Ask</h4>
+  <div class="q"><b>Q.</b> What coving is specified to the wet areas?<br>
+  <b>A.</b> Sheet vinyl coved <mark>100mm to all walls</mark>, welded seams, to AS 1884.</div>
+  <div style="padding:0 13px 13px"><div class="btns"><span class="fld">Which areas need moisture testing?</span><button class="btn p">Ask</button></div></div>
+</div>
+<div class="card">
+  <h4>Finishes<em>3 of 11 lines</em></h4>
+  <table>
+    <thead><tr><th>Finish</th><th class="r">Qty</th><th class="r">Rate</th><th class="r">Amount</th></tr></thead>
+    <tbody>
+      <tr><td>Vinyl sheet, wet areas</td><td class="r">1,148.05</td><td class="r">64.20</td><td class="r">73,704.81</td></tr>
+      <tr><td>Carpet tile, admin</td><td class="r">611.10</td><td class="r">48.75</td><td class="r">29,791.13</td></tr>
+      <tr><td>Sports vinyl, gymnasium</td><td class="r">1,011.00</td><td class="r">91.40</td><td class="r">92,405.40</td></tr>
+    </tbody>
+    <tfoot><tr><td>Subtotal</td><td class="r">2,770.15</td><td class="r"></td><td class="r">195,901.34</td></tr></tfoot>
+  </table>
+</div>
+<div class="btns">
+  <button class="btn p">Save</button><button class="btn s">Export CSV</button><button class="btn g sm">History</button>
+</div>`;
+a.innerHTML=STAGE; b.innerHTML=STAGE;
+</script>
+</body>
+</html>

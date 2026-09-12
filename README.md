@@ -25,10 +25,10 @@ Only the shared brand layer is open. Application code stays private.
   Code and Cursor default to this registry.
 - **Catalog.** `registry.json` at the root says what's installable, and it's
   the single source of truth for every token.
-- **Preview.** `preview.html` shows the ramps, the type scale, the contrast
-  audit and the components in both skins. Open it straight in a browser. Every
-  name, quantity and figure on it is invented to exercise the components, none
-  of it is Fivic data.
+- **Preview.** `preview.html` is a component sheet showing the ramps, the type
+  scale and the components in both skins. Open it straight in a browser, no
+  build. Every name, quantity and figure on it is invented to exercise the
+  components, none of it is Fivic data.
 
 ## Brand reference
 
