@@ -1,0 +1,7 @@
+node_modules/
+.DS_Store
+
+# Font binaries don't get committed HERE. This repo ships the @font-face rules
+# and the fetch script. The woff2 files get pulled into each app that uses
+# this, and committed there, so that app serves them off its own origin.
+public/fonts/*.woff2
