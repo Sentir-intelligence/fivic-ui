@@ -1,8 +1,10 @@
 # FIVIC OS UI conventions
 
-Rules for any coding agent (Claude Code, Cursor) writing front end code in
-FIVIC OS. Most of these are here because something breaks otherwise, and the
-reason sits next to the rule so you can tell a rule from a taste.
+Rules for any agent working on FIVIC OS, whether that's writing front end
+code (Claude Code, Cursor) or designing in the Figma file. Most of these are
+here because something breaks otherwise, and the reason sits next to the rule
+so you can tell a rule from a taste. If you're in Figma, read the lot, then the
+Figma section at the bottom, which carries the file keys and the traps.
 
 ## Install from the registry, don't hand roll UI
 
@@ -111,6 +113,68 @@ you need an asset, commit it and serve it from our own origin.
 
 Lucide. Only add your own SVG for brand shapes lucide hasn't got, and put it
 in the registry so every app gets it. Don't mix icon libraries.
+
+## If you're in Figma rather than code
+
+Everything above still applies. What changes is that nothing installs, so the
+file and its pieces get named here instead.
+
+The code below is the Figma plugin API, which is what the Figma MCP's
+`use_figma` runs. Load the figma-use guidance before your first call to it.
+
+**Platform**, fileKey `01cohbqiutxB8qfCr3ynOU`, is the design file.
+
+- **Components** holds every component. Use instances. Don't draw new ones,
+  and don't add a component without being asked.
+- **Icons** holds the lucide set at 16px. Instance them rather than pasting
+  SVG.
+- **Page 1** is the desktop screens at 1440x900 and **Mobile** is the phone
+  ones at 390x844. Match what's already there.
+
+Type is the eleven `fivic/*` text styles and nothing else, with no local
+overrides. Colour is always a bound variable rather than a raw fill, so
+`figma.variables.setBoundVariableForPaint`.
+
+Every screen exists in light and dark, and each frame pins its own mode:
+
+```js
+const COL = "VariableCollectionId:87b69486f840c6b8222ede7a2f811697baa31bb9/1354:16"
+const col = await figma.variables.getVariableCollectionByIdAsync(COL)
+frame.setExplicitVariableModeForCollection(col, "372:1")  // light
+frame.setExplicitVariableModeForCollection(col, "373:0")  // dark
+```
+
+Build the light one, get it right, then clone it and flip the mode. That
+collection lives in the library file, `FIaUzKDXGZ6sW4Gca8GlAO`, which is read
+only, so `getLocalVariableCollectionsAsync` comes back empty and you need the
+id above.
+
+`--input` is a border colour, not a background. Fill a field with it and you
+get a grey slab. Take a field's fill off the Input component.
+
+### Six things that cost an hour each
+
+- `resize()` after setting layout sizing modes resets them to FIXED. Size
+  first, then the modes.
+- Hidden children aren't in `instance.children`, so you can't find one and
+  unhide it. Optional parts are BOOLEAN component properties bound to
+  `visible`, toggled with `setProperties`.
+- `insertChild` inside an instance throws. You can't reorder an instance's
+  children, so design around it.
+- Text truncates rather than wraps if you only set `HEIGHT` and `FILL`. Do
+  `textAutoResize = "NONE"`, `resize(w, 20)`, `textAutoResize = "HEIGHT"`,
+  append it, then `layoutSizingHorizontal = "FILL"`.
+- Fonts have to be loaded before you set `characters`. Inter is
+  `"Semi Bold"` with a space and Bai Jamjuree is `"SemiBold"` without one.
+- `figma.setCurrentPageAsync(page)`. Assigning `figma.currentPage` does
+  nothing.
+
+Screenshot every frame you touch and look at it before you call it done. A
+good half of what goes wrong here renders a perfectly healthy node tree.
+
+Publishing the library is the one job that goes back to a person. There's no
+method for it, somebody has to do it in the Figma UI, and until they do, a
+changed variable never reaches the Platform file.
 
 ## Extend upstream, don't fork
 
