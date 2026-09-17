@@ -75,16 +75,50 @@ function Button({
   variant,
   size,
   asChild = false,
+  trailingIcon,
+  children,
   ...props
 }: React.ComponentProps<"button"> &
-  VariantProps<typeof buttonVariants> & { asChild?: boolean }) {
+  VariantProps<typeof buttonVariants> & {
+    asChild?: boolean
+    /**
+     * An icon after the label, for a button that opens something rather than
+     * doing something. A chevron down on a button with a menu behind it, and
+     * very little else: two icons on one control is already one too many.
+     * The leading icon is just `children`, so pass both if you have to.
+     */
+    trailingIcon?: React.ReactNode
+  }) {
   const Comp = asChild ? Slot : "button"
+
+  // Slot takes exactly one child, so with asChild the trailing icon has to go
+  // inside the element that was handed to us rather than beside it.
+  const content =
+    asChild && trailingIcon && React.isValidElement(children)
+      ? React.cloneElement(
+          children as React.ReactElement<{ children?: React.ReactNode }>,
+          undefined,
+          <>
+            {(children as React.ReactElement<{ children?: React.ReactNode }>)
+              .props.children}
+            {trailingIcon}
+          </>
+        )
+      : (
+          <>
+            {children}
+            {trailingIcon}
+          </>
+        )
+
   return (
     <Comp
       data-slot="button"
       className={cn(buttonVariants({ variant, size, className }))}
       {...props}
-    />
+    >
+      {content}
+    </Comp>
   )
 }
 

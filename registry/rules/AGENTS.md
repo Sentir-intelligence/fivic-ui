@@ -168,6 +168,14 @@ you need an asset, commit it and serve it from our own origin.
 Lucide. Only add your own SVG for brand shapes lucide hasn't got, and put it
 in the registry so every app gets it. Don't mix icon libraries.
 
+An icon before the label is just `children`. An icon after it is the
+`trailingIcon` prop, and it is for a button that opens something rather than
+doing something, so a chevron down on a button with a menu behind it and very
+little else. Two icons on one control is already one too many. In Figma the
+same thing is the `Trailing icon` boolean on the Button set, which defaults
+off, alongside `Icon` for the leading one, which defaults on. Don't fork
+Button to get a chevron on the end of it.
+
 ## If you're in Figma rather than code
 
 Everything above still applies. What changes is that nothing installs, so the
