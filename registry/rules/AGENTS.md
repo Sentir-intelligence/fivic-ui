@@ -89,6 +89,45 @@ at `lg`, and its label stays on the same step. If you find yourself wanting a
 weight or a size that isn't in the scale, that's the signal to add a step to
 the theme, not to write it inline on one component.
 
+## Which step, and what the words say
+
+The scale stops two agents picking different sizes. This stops them writing in
+different voices, which is the other half of looking like one product.
+
+| Step | Where it goes |
+| --- | --- |
+| `title` | the screen's own name, once |
+| `heading` | the one thing a screen or a dialog opens on |
+| `subheading` | a row title or a card title, the thing you scan for |
+| `body` | prose |
+| `body-sm` | dense UI, so rows, chat, tables |
+| `label` | buttons, tabs, form field labels |
+| `caption` | meta under a title, counts, timestamps, the line nobody has to read |
+| `overline` | section labels, three words at most |
+
+`title-lg`, `display` and `display-lg` aren't on a working screen yet. If you
+find yourself reaching for one, that's worth a conversation rather than a
+decision.
+
+`caption` carries 2% tracking, which puts a gap after the last letter as well
+as between them. Anything centred inside a fixed round or square box, initials
+in an avatar above all, wants that tracking at zero.
+
+Sentence case everywhere. `overline` is the only uppercase in the system and
+the token carries it, so write "What's in it" and let the step do the rest.
+Never add `uppercase` yourself. Never Title Case either, not on a button, not
+on a tab, not on a column header. Document names, folder names and codes keep
+whatever casing they arrived with, so `GA-410` and `Unsorted` stay put.
+
+Name the work, not the software. RFIs rather than RFI Tracker, Revisions
+rather than Revision Manager. Tracker and manager are words about software and
+nobody doing the job says them. A button that does something opens with the
+verb: Create take-off, Add to project, Raise an RFI.
+
+Nothing shouts. Skip the exclamation marks, and keep warning words off
+anything that isn't a warning. Where a count is the point, put it in the label
+rather than a badge next to it, so `Questions 10` and `RFIs 15`.
+
 ## The density is deliberate
 
 Controls are 32px (`--size-control-md`) instead of shadcn's 36px, and table

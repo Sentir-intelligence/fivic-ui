@@ -17,12 +17,13 @@ import { cn } from "@/lib/utils"
  *
  * Colours come from the soft token trio (background, foreground, border),
  * which is defined in both modes and measured at 4.5:1 or better in each.
- * Type is `text-overline`, the scale token for an uppercase label, rather
- * than a raw size.
+ * Type is `text-overline`, which carries the uppercase itself, so pass the
+ * label in sentence case and let the token do it. Don't add `uppercase` here
+ * or anywhere else that uses the step.
  */
 const chipVariants = cva(
   "inline-flex items-center gap-1 rounded-xs border px-1.5 py-0.5 " +
-    "text-overline uppercase whitespace-nowrap " +
+    "text-overline whitespace-nowrap " +
     "[&_svg]:size-3 [&_svg]:shrink-0",
   {
     variants: {
