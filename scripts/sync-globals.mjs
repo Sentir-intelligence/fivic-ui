@@ -32,6 +32,21 @@ const vars = (obj, indent = "  ") =>
     .map(([k, v]) => `${indent}--${k}: ${v};`)
     .join("\n")
 
+/**
+ * The @theme inline block maps every semantic token onto a Tailwind colour
+ * utility, and it is derived rather than stored. It used to live in the theme
+ * item's `css` field, which broke `shadcn add .../theme` outright: that field
+ * is for CSS rules, so the CLI's postcss pass read `--color-background:
+ * var(--background)` as a rule, dropped the colon and died on
+ * `.temp{var(--background)}`. Every entry was only ever `--color-<k>:
+ * var(--<k>)` over the same keys as cssVars.light, so nothing is lost by
+ * generating it here off the one source of truth.
+ */
+const themeInline = (light) =>
+  Object.keys(light)
+    .map((k) => `  --color-${k}: var(--${k});`)
+    .join("\n")
+
 const reg = JSON.parse(await readFile(join(ROOT, "registry.json"), "utf8"))
 const theme = reg.items.find((i) => i.name === "theme")
 if (!theme) throw new Error("no theme item in registry.json")
@@ -73,9 +88,10 @@ ${vars(cssVars.light)}
 ${vars(cssVars.dark)}
 }
 
-${Object.entries(css)
-  .map(([sel, body]) => `${sel} {\n${block(body)}\n}`)
-  .join("\n\n")}
+${[
+  `@theme inline {\n${themeInline(cssVars.light)}\n}`,
+  ...Object.entries(css).map(([sel, body]) => `${sel} {\n${block(body)}\n}`),
+].join("\n\n")}
 `
 
 if (check) {
