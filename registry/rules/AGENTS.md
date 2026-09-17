@@ -15,11 +15,12 @@ npx shadcn add Sentir-intelligence/fivic-ui/theme   # once per app, first
 npx shadcn add Sentir-intelligence/fivic-ui/fonts
 npx shadcn add Sentir-intelligence/fivic-ui/logo
 npx shadcn add Sentir-intelligence/fivic-ui/button
+npx shadcn add Sentir-intelligence/fivic-ui/select
 npx shadcn add Sentir-intelligence/fivic-ui/status-chip
 ```
 
 Pin to a tag so a change up here can't break a sprint:
-`npx shadcn add Sentir-intelligence/fivic-ui/button#v0.1.0`. Check updates
+`npx shadcn add Sentir-intelligence/fivic-ui/button#v0.2.0`. Check updates
 with `--diff` first.
 
 ## Theme first, and only one
@@ -213,6 +214,13 @@ id above.
 
 `--input` is a border colour, not a background. Fill a field with it and you
 get a grey slab. Take a field's fill off the Input component.
+
+A dropdown trigger is a Select, and it is built to match Input rather than
+Button, because a control holding a value you chose should look like the
+controls holding values you typed. Bordered inside a toolbar, `ghost` inside a
+table cell, where a border would draw a box around one column and `text-label`
+would make the figure smaller than the numbers either side of it. Ghost sets
+no type step on purpose, so it takes whatever the cell is using.
 
 ### Six things that cost an hour each
 

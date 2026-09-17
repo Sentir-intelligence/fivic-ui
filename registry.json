@@ -409,6 +409,23 @@
       ]
     },
     {
+      "name": "select",
+      "type": "registry:ui",
+      "title": "FIVIC Select",
+      "description": "A dropdown trigger built to match Input rather than Button, because a control holding a value you chose should look like the controls holding values you typed: 32px, --input border, --card fill, radius-md, text-label. Sizes are sm (28px) and default (32px), the same two the Button has, and there is no lg because a select is never the main action on a page. Two variants: default is the bordered trigger, and ghost drops the border, the fill and the type step so it can sit inside a table cell without drawing a box around one column. Restyled on the shadcn Select, not forked from it.",
+      "dependencies": [
+        "@radix-ui/react-select",
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "registry/fivic/select.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/select.tsx"
+        }
+      ]
+    },
+    {
       "name": "status-chip",
       "type": "registry:ui",
       "title": "Status Chip",

@@ -89,6 +89,7 @@ Commit `public/fonts/` afterwards so the build doesn't need the network.
 ```bash
 npx shadcn add Sentir-intelligence/fivic-ui/logo
 npx shadcn add Sentir-intelligence/fivic-ui/button
+npx shadcn add Sentir-intelligence/fivic-ui/select
 npx shadcn add Sentir-intelligence/fivic-ui/status-chip
 ```
 
@@ -107,7 +108,7 @@ you've got two answers to the same question.
 ### Pin to a tag
 
 ```bash
-npx shadcn add Sentir-intelligence/fivic-ui/button#v0.1.2
+npx shadcn add Sentir-intelligence/fivic-ui/button#v0.2.0
 ```
 
 Check updates with `npx shadcn add ... --diff` before applying them.
@@ -178,7 +179,7 @@ and follow it. The components and screens are in the Figma Platform file,
 
 ## Status
 
-`v0.1.2`, draft. Still open:
+`v0.2.0`, draft. Still open:
 
 - Fivic's vector logo artwork, for the full lockup.
 - Chart colours are a placeholder. Five hues are reserved and they pass
