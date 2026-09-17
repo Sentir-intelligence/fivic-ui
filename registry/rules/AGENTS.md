@@ -135,6 +135,21 @@ rows are 36px. Up and down space is the scarcest thing on these screens.
 Don't put the shadcn defaults back because something looks cramped next to an
 unstyled component.
 
+## Disabled is a token, never an opacity
+
+`opacity-50` on a control drops the whole thing toward whatever sits behind
+it, so the same disabled button reads one way on a card and another on a
+sunken panel, and nothing in the theme has a say in it. Use `bg-disabled` and
+`text-disabled-foreground`, which are 3.03:1 in light and 3.37:1 in dark:
+plainly off, still readable. In Figma it is the `State=disabled` variant, not
+an opacity you type into the right hand panel.
+
+Disabled also drops the variant. A disabled destructive button is not a
+quieter red, it is the same inert slab as every other disabled button, because
+the only thing it still has to say is that you cannot press it. Ghost is the
+exception and keeps its transparent fill, since a slab would make it louder
+switched off than switched on.
+
 ## Both modes, same commit
 
 Any token you add to `:root` gets added to `.dark` in the same change. Miss
