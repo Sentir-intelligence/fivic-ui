@@ -222,7 +222,7 @@ table cell, where a border would draw a box around one column and `text-label`
 would make the figure smaller than the numbers either side of it. Ghost sets
 no type step on purpose, so it takes whatever the cell is using.
 
-### Six things that cost an hour each
+### Seven things that cost an hour each
 
 - `resize()` after setting layout sizing modes resets them to FIXED. Size
   first, then the modes.
@@ -238,6 +238,14 @@ no type step on purpose, so it takes whatever the cell is using.
   `"Semi Bold"` with a space and Bai Jamjuree is `"SemiBold"` without one.
 - `figma.setCurrentPageAsync(page)`. Assigning `figma.currentPage` does
   nothing.
+- `swapComponent` on an icon instance already sitting in a screen keeps
+  drawing the old artwork. The API then lies about it: `getMainComponentAsync`
+  returns the new component and the vector reports the new path data, and the
+  pixels are still the old glyph. A back control swapped from chevron-right to
+  chevron-left read as chevron-right with every property saying otherwise.
+  Don't swap. Make a new instance, `insertChild` it at the old one's index,
+  reapply the stroke binding, remove the old one. That is also why you
+  screenshot: this one is invisible to every check that isn't a picture.
 
 Screenshot every frame you touch and look at it before you call it done. A
 good half of what goes wrong here renders a perfectly healthy node tree.
