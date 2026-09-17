@@ -326,6 +326,9 @@
             "font-variant-numeric": "normal",
             "font-feature-settings": "normal"
           },
+          ".text-overline": {
+            "text-transform": "uppercase"
+          },
           ":focus-visible": {
             "outline": "2px solid var(--ring)",
             "outline-offset": "2px",
@@ -360,7 +363,7 @@
       "name": "agents",
       "type": "registry:file",
       "title": "Agent Conventions",
-      "description": "Rules for Claude Code and Cursor working in FIVIC OS. Install from this registry, theme first, don't mix up --brand and --primary, never write a colour value in a component, numbers are always tabular, Bai Jamjuree never sets a number, 32px controls instead of 36px, both modes in one commit, and nothing calls out to another server. Put this in every app and every repo.",
+      "description": "Rules for any agent working on FIVIC OS, in code or in the Figma file. Install from this registry, theme first, don't mix up --brand and --primary, never write a colour value in a component, numbers are always tabular, Bai Jamjuree never sets a number, 32px controls instead of 36px, both modes in one commit, and nothing calls out to another server. It also says which type step goes where, that everything is sentence case, and carries the Figma file keys, the variable modes and the plugin API traps. Put this in every app and every repo.",
       "files": [
         {
           "path": "registry/rules/AGENTS.md",
