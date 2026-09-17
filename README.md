@@ -22,7 +22,8 @@ Only the brand layer is open, application code stays private.
   because a FIVIC app never calls out to another server.
 - **Components.** Branded shadcn components under `registry/fivic/`.
 - **Agent rules.** `AGENTS.md`, installed into each app and repo so Claude
-  Code and Cursor reach for this registry first.
+  Code and Cursor reach for this registry first. It briefs an agent working
+  in the Figma file too, which is why it carries the file keys.
 - **Catalog.** `registry.json` at the root says what's installable, and it's
   where every token actually lives.
 - **Preview.** `preview.html` shows the ramps, the type scale and the
@@ -52,7 +53,9 @@ colour, it's six degrees off the logo hue and lighter, so it lands on
 `brand-400`.
 
 Type is Bai Jamjuree for display at 20px and up, Inter for everything else.
-Radius is `0.25rem`, off the hard corners in the logo.
+Radius is `0.25rem`, off the hard corners in the logo. Labels are sentence
+case throughout, and `text-overline` is the only step that shouts, which it
+does itself.
 
 ### The two rules that matter most
 
@@ -104,7 +107,7 @@ you've got two answers to the same question.
 ### Pin to a tag
 
 ```bash
-npx shadcn add Sentir-intelligence/fivic-ui/button#v0.1.0
+npx shadcn add Sentir-intelligence/fivic-ui/button#v0.1.2
 ```
 
 Check updates with `npx shadcn add ... --diff` before applying them.
@@ -153,22 +156,39 @@ what the CLI and the coding agents read when they're working out whether to
 use it, so write it for them. Say what it's for and what's odd about it, not
 just what it's called.
 
-## For coding agents
+## For agents
 
 Install `Sentir-intelligence/fivic-ui/agents` into every FIVIC repo. It drops
 an `AGENTS.md` covering registry first, theme ordering, the `--brand` against
 `--primary` split, no colour values in components, tabular numbers, the 20px
-typeface boundary, density, both modes in one commit, and the rule about not
-calling out to another server.
+typeface boundary, which type step goes where, sentence case, density, both
+modes in one commit, and the rule about not calling out to another server.
+
+The same file briefs an agent working in Figma rather than in code. Its last
+section carries the Platform file key, what sits on each page, the variable
+mode collection and the plugin API traps that cost an hour each. Nothing
+installs in Figma, so pointing an agent at this one file and the file key is
+the whole briefing:
+
+```
+Read github.com/Sentir-intelligence/fivic-ui/blob/main/registry/rules/AGENTS.md
+and follow it. The components and screens are in the Figma Platform file,
+01cohbqiutxB8qfCr3ynOU.
+```
 
 ## Status
 
-`v0.1.0`, draft. Still open:
+`v0.1.2`, draft. Still open:
 
 - Fivic's vector logo artwork, for the full lockup.
 - Chart colours are a placeholder. Five hues are reserved and they pass
   contrast, but the set should be settled against real quote and pipeline
   data rather than guessed at now.
-- Domain components, so the document row, the citation, the quantity table,
-  aren't here yet on purpose. They wait until the chat surface is settled, so
-  the vocabulary comes out of the real workflow instead of being invented.
+- Domain components are designed and not yet written. DocRow, FolderRow,
+  Citation, QuestionCard, RfiRow, RfiAnswer and RevisionCard all sit in the
+  Figma file and none of them are in the registry. They come across once the
+  screens stop moving, so the props come out of a built page rather than a
+  mockup. The quantity table is the one that hasn't been designed at all.
+- `title-lg`, `display` and `display-lg` aren't on a working screen. Three
+  steps earning nothing so far. Either something needs them or they come out,
+  before somebody reaches for one by accident.
