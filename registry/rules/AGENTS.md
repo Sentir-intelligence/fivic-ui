@@ -15,11 +15,12 @@ npx shadcn add Sentir-intelligence/fivic-ui/theme   # once per app, first
 npx shadcn add Sentir-intelligence/fivic-ui/fonts
 npx shadcn add Sentir-intelligence/fivic-ui/logo
 npx shadcn add Sentir-intelligence/fivic-ui/button
+npx shadcn add Sentir-intelligence/fivic-ui/select
 npx shadcn add Sentir-intelligence/fivic-ui/status-chip
 ```
 
 Pin to a tag so a change up here can't break a sprint:
-`npx shadcn add Sentir-intelligence/fivic-ui/button#v0.1.0`. Check updates
+`npx shadcn add Sentir-intelligence/fivic-ui/button#v0.2.0`. Check updates
 with `--diff` first.
 
 ## Theme first, and only one
@@ -135,6 +136,21 @@ rows are 36px. Up and down space is the scarcest thing on these screens.
 Don't put the shadcn defaults back because something looks cramped next to an
 unstyled component.
 
+## Disabled is a token, never an opacity
+
+`opacity-50` on a control drops the whole thing toward whatever sits behind
+it, so the same disabled button reads one way on a card and another on a
+sunken panel, and nothing in the theme has a say in it. Use `bg-disabled` and
+`text-disabled-foreground`, which are 3.03:1 in light and 3.37:1 in dark:
+plainly off, still readable. In Figma it is the `State=disabled` variant, not
+an opacity you type into the right hand panel.
+
+Disabled also drops the variant. A disabled destructive button is not a
+quieter red, it is the same inert slab as every other disabled button, because
+the only thing it still has to say is that you cannot press it. Ghost is the
+exception and keeps its transparent fill, since a slab would make it louder
+switched off than switched on.
+
 ## Both modes, same commit
 
 Any token you add to `:root` gets added to `.dark` in the same change. Miss
@@ -152,6 +168,14 @@ you need an asset, commit it and serve it from our own origin.
 
 Lucide. Only add your own SVG for brand shapes lucide hasn't got, and put it
 in the registry so every app gets it. Don't mix icon libraries.
+
+An icon before the label is just `children`. An icon after it is the
+`trailingIcon` prop, and it is for a button that opens something rather than
+doing something, so a chevron down on a button with a menu behind it and very
+little else. Two icons on one control is already one too many. In Figma the
+same thing is the `Trailing icon` boolean on the Button set, which defaults
+off, alongside `Icon` for the leading one, which defaults on. Don't fork
+Button to get a chevron on the end of it.
 
 ## If you're in Figma rather than code
 
@@ -191,7 +215,14 @@ id above.
 `--input` is a border colour, not a background. Fill a field with it and you
 get a grey slab. Take a field's fill off the Input component.
 
-### Six things that cost an hour each
+A dropdown trigger is a Select, and it is built to match Input rather than
+Button, because a control holding a value you chose should look like the
+controls holding values you typed. Bordered inside a toolbar, `ghost` inside a
+table cell, where a border would draw a box around one column and `text-label`
+would make the figure smaller than the numbers either side of it. Ghost sets
+no type step on purpose, so it takes whatever the cell is using.
+
+### Seven things that cost an hour each
 
 - `resize()` after setting layout sizing modes resets them to FIXED. Size
   first, then the modes.
@@ -207,6 +238,14 @@ get a grey slab. Take a field's fill off the Input component.
   `"Semi Bold"` with a space and Bai Jamjuree is `"SemiBold"` without one.
 - `figma.setCurrentPageAsync(page)`. Assigning `figma.currentPage` does
   nothing.
+- `swapComponent` on an icon instance already sitting in a screen keeps
+  drawing the old artwork. The API then lies about it: `getMainComponentAsync`
+  returns the new component and the vector reports the new path data, and the
+  pixels are still the old glyph. A back control swapped from chevron-right to
+  chevron-left read as chevron-right with every property saying otherwise.
+  Don't swap. Make a new instance, `insertChild` it at the old one's index,
+  reapply the stroke binding, remove the old one. That is also why you
+  screenshot: this one is invisible to every check that isn't a picture.
 
 Screenshot every frame you touch and look at it before you call it done. A
 good half of what goes wrong here renders a perfectly healthy node tree.

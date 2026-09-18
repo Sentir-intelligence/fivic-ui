@@ -7,7 +7,7 @@
       "name": "theme",
       "type": "registry:style",
       "title": "FIVIC Theme",
-      "description": "The Flooring Innovations Victoria brand as tokens, worked out in OKLCH from the logo and fivic.net. Install this first, once per app, before anything else. Five ramps built on the same set of lightness steps, every named colour in light and dark, a 14px type scale, 4px radius and tighter spacing than shadcn ships. One thing to watch: --brand (#2997B0) and --primary (#177B91) are different colours on purpose. Brand is identity only and primary carries anything with words on it, because white on the logo teal fails WCAG AA. See AGENTS.md. Install the fonts item alongside this.",
+      "description": "The Flooring Innovations Victoria brand as tokens, worked out in OKLCH from the logo and fivic.net. Install this first, once per app, before anything else. Five ramps built on the same set of lightness steps, a disabled pair so no control has to fall back on an opacity, every named colour in light and dark, a 14px type scale, 4px radius and tighter spacing than shadcn ships. One thing to watch: --brand (#2997B0) and --primary (#177B91) are different colours on purpose. Brand is identity only and primary carries anything with words on it, because white on the logo teal fails WCAG AA. See AGENTS.md. Install the fonts item alongside this.",
       "dependencies": [
         "tw-animate-css"
       ],
@@ -143,6 +143,8 @@
           "muted-foreground": "var(--color-neutral-600)",
           "accent": "var(--color-neutral-200)",
           "accent-foreground": "var(--color-neutral-900)",
+          "disabled": "var(--color-neutral-200)",
+          "disabled-foreground": "var(--color-neutral-500)",
           "destructive": "var(--color-danger-700)",
           "destructive-foreground": "#ffffff",
           "success": "var(--color-success-700)",
@@ -200,6 +202,8 @@
           "muted-foreground": "var(--color-neutral-400)",
           "accent": "var(--color-neutral-800)",
           "accent-foreground": "var(--color-neutral-50)",
+          "disabled": "var(--color-neutral-800)",
+          "disabled-foreground": "var(--color-neutral-500)",
           "destructive": "var(--color-danger-400)",
           "destructive-foreground": "var(--color-danger-950)",
           "success": "var(--color-success-400)",
@@ -259,6 +263,8 @@
           "--color-muted-foreground": "var(--muted-foreground)",
           "--color-accent": "var(--accent)",
           "--color-accent-foreground": "var(--accent-foreground)",
+          "--color-disabled": "var(--disabled)",
+          "--color-disabled-foreground": "var(--disabled-foreground)",
           "--color-destructive": "var(--destructive)",
           "--color-destructive-foreground": "var(--destructive-foreground)",
           "--color-success": "var(--success)",
@@ -389,7 +395,7 @@
       "name": "button",
       "type": "registry:ui",
       "title": "Button",
-      "description": "The FIVIC button. 32px by default instead of shadcn's 36px, because up and down space is the scarcest thing on these screens. The filled one uses --primary, and there's deliberately no brand variant, because white on the logo teal fails WCAG AA. Sizes are sm (28px, inline and in table rows), default (32px), and lg (36px, for the one main action on a page). The label is text-label at all three: size changes the control, not the type.",
+      "description": "The FIVIC button. 32px by default instead of shadcn's 36px, because up and down space is the scarcest thing on these screens. The filled one uses --primary, and there's deliberately no brand variant, because white on the logo teal fails WCAG AA. Sizes are sm (28px, inline and in table rows), default (32px), and lg (36px, for the one main action on a page). The label is text-label at all three: size changes the control, not the type. A trailingIcon prop puts an icon after the label, for a button that opens something rather than doing something, which is the one thing you cannot compose from children.",
       "dependencies": [
         "@radix-ui/react-slot",
         "class-variance-authority"
@@ -399,6 +405,23 @@
           "path": "registry/fivic/button.tsx",
           "type": "registry:ui",
           "target": "components/ui/button.tsx"
+        }
+      ]
+    },
+    {
+      "name": "select",
+      "type": "registry:ui",
+      "title": "FIVIC Select",
+      "description": "A dropdown trigger built to match Input rather than Button, because a control holding a value you chose should look like the controls holding values you typed: 32px, --input border, --card fill, radius-md, text-label. Sizes are sm (28px) and default (32px), the same two the Button has, and there is no lg because a select is never the main action on a page. Two variants: default is the bordered trigger, and ghost drops the border, the fill and the type step so it can sit inside a table cell without drawing a box around one column. Restyled on the shadcn Select, not forked from it.",
+      "dependencies": [
+        "@radix-ui/react-select",
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "registry/fivic/select.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/select.tsx"
         }
       ]
     },
