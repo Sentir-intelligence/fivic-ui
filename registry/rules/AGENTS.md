@@ -146,7 +146,7 @@ plainly off, still readable. In Figma it is the `State=disabled` variant, not
 an opacity you type into the right hand panel.
 
 Disabled also drops the variant. A disabled destructive button is not a
-quieter red, it is the same inert slab as every other disabled button, because
+quieter red, it is the same dead slab as every other disabled button, because
 the only thing it still has to say is that you cannot press it. Ghost is the
 exception and keeps its transparent fill, since a slab would make it louder
 switched off than switched on.
@@ -215,12 +215,13 @@ id above.
 `--input` is a border colour, not a background. Fill a field with it and you
 get a grey slab. Take a field's fill off the Input component.
 
-A dropdown trigger is a Select, and it is built to match Input rather than
-Button, because a control holding a value you chose should look like the
-controls holding values you typed. Bordered inside a toolbar, `ghost` inside a
-table cell, where a border would draw a box around one column and `text-label`
-would make the figure smaller than the numbers either side of it. Ghost sets
-no type step on purpose, so it takes whatever the cell is using.
+The thing you click to open a dropdown is a Select, and it is built to match
+Input rather than Button, because something holding a value you picked should
+look like the things holding values you typed. Bordered in a page header,
+`ghost` inside a table cell, where a border would draw a box around one column
+and `text-label` would make the figure smaller than the numbers either side of
+it. Ghost sets no type step on purpose, so it takes whatever the cell is
+using.
 
 ### Seven things that cost an hour each
 
