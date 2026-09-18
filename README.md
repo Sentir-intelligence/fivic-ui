@@ -140,11 +140,11 @@ and add a `variant="full"` when they land.
    `node scripts/sync-globals.mjs --check`.
 3. Add the token to **both** `light` and `dark`. A token that only exists in
    one mode puts one theme's text on the other theme's background.
-4. Don't touch the `@theme inline` block. There isn't one to touch any more:
+4. There is no `@theme inline` block to maintain any more.
    `sync-globals.mjs` derives it from the `light` keys, so a new token gets
-   its `--color-*` mapping for free. Putting custom properties back into the
-   theme item's `css` field is what broke `shadcn add .../theme` before, since
-   that field is for CSS rules and the CLI's parser drops the colon.
+   its `--color-*` mapping for free. Don't put custom properties back into the
+   theme item's `css` field. That is what broke `shadcn add .../theme`, since
+   the field is for CSS rules and the CLI's parser drops the colon.
 5. Validate, commit and tag.
 
 ```bash
