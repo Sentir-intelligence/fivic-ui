@@ -17,6 +17,12 @@ npx shadcn add Sentir-intelligence/fivic-ui/logo
 npx shadcn add Sentir-intelligence/fivic-ui/button
 npx shadcn add Sentir-intelligence/fivic-ui/select
 npx shadcn add Sentir-intelligence/fivic-ui/status-chip
+npx shadcn add Sentir-intelligence/fivic-ui/input
+npx shadcn add Sentir-intelligence/fivic-ui/checkbox
+npx shadcn add Sentir-intelligence/fivic-ui/switch
+npx shadcn add Sentir-intelligence/fivic-ui/avatar
+npx shadcn add Sentir-intelligence/fivic-ui/segmented-control
+npx shadcn add Sentir-intelligence/fivic-ui/split-divider
 ```
 
 Pin to a tag so a change up here can't break a sprint:
@@ -77,6 +83,15 @@ the built screen has it right. Take the rule from here, not from the picture.
   25.8px for the "0", so it never sets a number. Putting `.font-display` on
   something also switches tabular figures off, because the face hasn't got
   them.
+- The four display steps carry the face themselves, the same as the
+  `fivic/display-lg`, `fivic/display`, `fivic/title-lg` and `fivic/title`
+  styles in Figma. `text-display-lg`, `text-display`, `text-title-lg` and
+  `text-title` each set Bai Jamjuree and switch tabular figures off, so the
+  step on its own matches the picture and you don't add `font-display` as
+  well. Reach for `font-display` by itself only for a brand moment that
+  isn't on one of those steps. The face comes from a base rule on the plain
+  class name, so a step behind a variant, like `md:text-title`, gets the
+  size but not the face. Add `md:font-display` alongside it there.
 - Inter (`font-sans`) does everything else. Body text, labels, data, every
   number.
 - The mono token is the system stack. Identifiers and file paths only.
@@ -187,12 +202,33 @@ The code below is the Figma plugin API, which is what the Figma MCP's
 
 **Platform**, fileKey `01cohbqiutxB8qfCr3ynOU`, is the design file.
 
-- **Components** holds every component. Use instances. Don't draw new ones,
-  and don't add a component without being asked.
+- **Desktop** is the desktop screens at 1440x900. Match what's already there.
+- **Mobile** is the phone screens at 390x844.
 - **Icons** holds the lucide set at 16px. Instance them rather than pasting
   SVG.
-- **Page 1** is the desktop screens at 1440x900 and **Mobile** is the phone
-  ones at 390x844. Match what's already there.
+- **Components** holds every component. Use instances. Don't draw new ones,
+  and don't add a component without being asked.
+- **Archive** is kept for reference. Don't build from it.
+- **Iterations** is work in progress, and right now that is the context map.
+  Nothing there is settled, so don't copy from it into Desktop or Mobile
+  unless you're asked to. Its UX paths and card specs sections are the
+  exception for the front end: read them before building any of the context
+  map, because they say how it is meant to behave.
+
+The Components page has three sections, and which one a component sits in
+tells you where its code lives.
+
+- **fivic-ui** is exactly what this registry ships, one for one. If it's in
+  that section, `npx shadcn add` it.
+- **FIVIC OS** and **Context map** are app level. They're written in the app
+  against real data, not installed from here, so the props come out of a
+  built page rather than a mockup.
+
+Every component description in Figma follows one format, in uppercase labels
+so a person or an agent can find the line they want. `CODE`, `PROPS`,
+`GEOMETRY` and `TOKENS` always, in that order, then `DATA`, `STATES`, `WHEN`,
+`RULE` or `CLICK` where they apply. Write new descriptions the same way, and
+read `CODE` first: it says whether to install the thing or write it.
 
 Type is the eleven `fivic/*` text styles and nothing else, with no local
 overrides. Colour is always a bound variable rather than a raw fill, so

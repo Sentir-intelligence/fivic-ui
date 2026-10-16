@@ -239,7 +239,7 @@
   --ring: var(--color-brand-500);
   --highlight: var(--color-warning-800);
   --highlight-foreground: var(--color-warning-100);
-  --scrim: oklch(0.1700 0.0200 225 / 0.72);
+  --scrim: oklch(0.1700 0.0200 225 / 0.42);
   --chart-1: oklch(0.7440 0.1200 217);
   --chart-2: oklch(0.7440 0.1200 152);
   --chart-3: oklch(0.7440 0.1200 73);
@@ -339,6 +339,11 @@
     font-feature-settings: "tnum", "cv11";
   }
   .font-display {
+    font-family: var(--font-display);
+    font-variant-numeric: normal;
+    font-feature-settings: normal;
+  }
+  .text-display-lg, .text-display, .text-title-lg, .text-title {
     font-family: var(--font-display);
     font-variant-numeric: normal;
     font-feature-settings: normal;
