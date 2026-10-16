@@ -1,6 +1,6 @@
 import * as React from "react"
 import * as CheckboxPrimitive from "@radix-ui/react-checkbox"
-import { Check, Minus } from "lucide-react"
+import { Check } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 
@@ -11,8 +11,9 @@ import { cn } from "@/lib/utils"
  * label. At 16px the box outweighs the words it belongs to and pulls the eye
  * off the row.
  *
- * Checked fills with `--primary` and carries the tick in
- * `--primary-foreground`, since a tick is something you read. Unchecked is a
+ * Checked fills with `--primary` and carries a 9px tick in
+ * `--primary-foreground`, since a tick is something you read. Indeterminate
+ * is the same fill with a 7 x 1.5 dash in place of the tick. Unchecked is a
  * bare `--input` border with nothing in it. Corners are `radius-xs`, so the
  * box still reads as a box at this size rather than a dot.
  *
@@ -26,8 +27,9 @@ import { cn } from "@/lib/utils"
  *   </label>
  *
  * Disabled is tokens, not opacity, and it drops the checked fill the same way
- * a disabled Button drops its variant: `--disabled` with the tick in
- * `--disabled-foreground`, so a switched off box that happens to be ticked
+ * a disabled Button drops its variant: `--disabled` fill with the border in
+ * the same colour, so there is no visible edge, and the tick or dash in
+ * `--disabled-foreground`. A switched off box that happens to be ticked
  * doesn't still shout `--primary`.
  *
  * Checked and disabled styles are kept from ever matching together
@@ -49,7 +51,7 @@ function Checkbox({
           "enabled:data-[state=checked]:text-primary-foreground " +
           "enabled:data-[state=indeterminate]:border-primary enabled:data-[state=indeterminate]:bg-primary " +
           "enabled:data-[state=indeterminate]:text-primary-foreground " +
-          "disabled:pointer-events-none disabled:border-transparent disabled:bg-disabled " +
+          "disabled:pointer-events-none disabled:border-disabled disabled:bg-disabled " +
           "disabled:text-disabled-foreground",
         className
       )}
@@ -60,14 +62,16 @@ function Checkbox({
         className="group flex items-center justify-center text-current"
       >
         <Check
-          className="size-2.5 group-data-[state=indeterminate]:hidden"
+          className="size-2.25 group-data-[state=indeterminate]:hidden"
           strokeWidth={3}
           aria-hidden="true"
         />
-        <Minus
-          className="hidden size-2.5 group-data-[state=indeterminate]:block"
-          strokeWidth={3}
+        {/* A drawn bar rather than lucide's Minus, which can't come out at
+            exactly 7 x 1.5 at this size. */}
+        <span
+          data-slot="checkbox-dash"
           aria-hidden="true"
+          className="hidden h-[1.5px] w-1.75 bg-current group-data-[state=indeterminate]:block"
         />
       </CheckboxPrimitive.Indicator>
     </CheckboxPrimitive.Root>

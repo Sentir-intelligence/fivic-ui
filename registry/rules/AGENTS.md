@@ -83,6 +83,15 @@ the built screen has it right. Take the rule from here, not from the picture.
   25.8px for the "0", so it never sets a number. Putting `.font-display` on
   something also switches tabular figures off, because the face hasn't got
   them.
+- The four display steps carry the face themselves, the same as the
+  `fivic/display-lg`, `fivic/display`, `fivic/title-lg` and `fivic/title`
+  styles in Figma. `text-display-lg`, `text-display`, `text-title-lg` and
+  `text-title` each set Bai Jamjuree and switch tabular figures off, so the
+  step on its own matches the picture and you don't add `font-display` as
+  well. Reach for `font-display` by itself only for a brand moment that
+  isn't on one of those steps. The face comes from a base rule on the plain
+  class name, so a step behind a variant, like `md:text-title`, gets the
+  size but not the face. Add `md:font-display` alongside it there.
 - Inter (`font-sans`) does everything else. Body text, labels, data, every
   number.
 - The mono token is the system stack. Identifiers and file paths only.

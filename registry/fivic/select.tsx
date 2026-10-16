@@ -25,6 +25,10 @@ import { cn } from "@/lib/utils"
  *
  * Sizes are sm (28px) and default (32px), the same two the Button has. There
  * is no lg, because a select is never the main action on a page.
+ *
+ * Disabled is `--disabled` fill with the stroke kept in `--disabled`, as the
+ * Figma file draws it. Ghost has no stroke or fill to keep, so it stays
+ * transparent and only its text goes grey.
  */
 const triggerVariants = {
   base:
@@ -32,7 +36,7 @@ const triggerVariants = {
     "transition-colors outline-none " +
     "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring " +
     "disabled:pointer-events-none disabled:bg-disabled disabled:text-disabled-foreground " +
-    "disabled:border-transparent " +
+    "disabled:border-disabled " +
     "[&>span]:truncate " +
     "[&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 " +
     "[&_svg]:text-muted-foreground disabled:[&_svg]:text-disabled-foreground",
@@ -43,7 +47,7 @@ const triggerVariants = {
     ghost:
       "border border-transparent bg-transparent text-foreground " +
       "hover:bg-accent data-[state=open]:bg-accent " +
-      "disabled:bg-transparent",
+      "disabled:border-transparent disabled:bg-transparent",
   },
   size: {
     default: "h-8 gap-1.5",

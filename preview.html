@@ -78,9 +78,10 @@
   .ctl:last-child{border-bottom:0}
   .ctl .tg{margin-left:auto}
   .cb{width:13px;height:13px;flex:none;border:1px solid var(--in);border-radius:2px;display:inline-flex;align-items:center;justify-content:center}
-  .cb svg{width:10px;height:10px;display:none}
-  .cb.on{background:var(--pri);border-color:var(--pri);color:var(--prifg)}
-  .cb.dis{background:var(--dis);border-color:transparent;color:var(--disfg)}
+  .cb svg{width:9px;height:9px;display:none}
+  .cb.mix::after{content:"";width:7px;height:1.5px;background:currentColor}
+  .cb.on,.cb.mix{background:var(--pri);border-color:var(--pri);color:var(--prifg)}
+  .cb.dis{background:var(--dis);border-color:var(--dis);color:var(--disfg)}
   .cb.on svg,.cb.dis.on svg{display:block}
   .tg{width:28px;height:16px;flex:none;border-radius:999px;background:var(--sec);position:relative}
   .tg::after{content:"";position:absolute;top:2px;left:2px;width:12px;height:12px;border-radius:50%;background:var(--card)}
@@ -214,6 +215,7 @@ const STAGE=`
 <div class="card">
   <h4>Settings</h4>
   <div class="ctl"><span class="cb on">${TICK}</span>Include superseded revisions</div>
+  <div class="ctl"><span class="cb mix"></span>Some of the drawings</div>
   <div class="ctl"><span class="cb"></span>Only documents with questions</div>
   <div class="ctl dim"><span class="cb dis on">${TICK}</span>Lock the finishes schedule</div>
   <div class="ctl">Show page numbers<span class="tg on"></span></div>

@@ -53,6 +53,9 @@ colour, it's six degrees off the logo hue and lighter, so it lands on
 `brand-400`.
 
 Type is Bai Jamjuree for display at 20px and up, Inter for everything else.
+The `text-display-lg`, `text-display`, `text-title-lg` and `text-title` steps
+set Bai Jamjuree themselves, as the matching Figma text styles do, so the step
+alone is enough.
 Radius is `0.25rem`, off the hard corners in the logo. Labels are sentence
 case throughout, and `text-overline` is the only step that shouts, which it
 does itself.
