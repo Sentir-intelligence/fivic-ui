@@ -91,6 +91,12 @@ npx shadcn add Sentir-intelligence/fivic-ui/logo
 npx shadcn add Sentir-intelligence/fivic-ui/button
 npx shadcn add Sentir-intelligence/fivic-ui/select
 npx shadcn add Sentir-intelligence/fivic-ui/status-chip
+npx shadcn add Sentir-intelligence/fivic-ui/input
+npx shadcn add Sentir-intelligence/fivic-ui/checkbox
+npx shadcn add Sentir-intelligence/fivic-ui/switch
+npx shadcn add Sentir-intelligence/fivic-ui/avatar
+npx shadcn add Sentir-intelligence/fivic-ui/segmented-control
+npx shadcn add Sentir-intelligence/fivic-ui/split-divider
 ```
 
 ### In a monorepo

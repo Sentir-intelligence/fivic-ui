@@ -381,6 +381,102 @@
           "target": "components/ui/status-chip.tsx"
         }
       ]
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "title": "Input",
+      "description": "The FIVIC text field. The same box as the Select trigger on purpose: 32px, radius-md, --card fill, --input border and 10px of side padding, so a value you typed and a value you picked read as one family. The value is text-body-sm rather than text-label, because it is content the person wrote, and the placeholder is --muted-foreground. --input is a border colour, never a fill. In Figma the Input is the search field with a 14px leading icon and a Clear boolean. This is the bare input element and the app composes the search field out of it. Disabled is tokens, not opacity.",
+      "files": [
+        {
+          "path": "registry/fivic/input.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/input.tsx"
+        }
+      ]
+    },
+    {
+      "name": "checkbox",
+      "type": "registry:ui",
+      "title": "Checkbox",
+      "description": "The FIVIC checkbox, on Radix. 13px rather than shadcn's 16px, because it sits in 36px rows next to a 12px label, at radius-xs. Checked fills with --primary and carries the tick in --primary-foreground, unchecked is a bare --input border. 13px is too small to aim at, so always wrap it in a label or make the row the label, and the words become the hit area. Disabled drops the checked fill to --disabled, the same way a disabled Button drops its variant.",
+      "dependencies": [
+        "@radix-ui/react-checkbox",
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "registry/fivic/checkbox.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/checkbox.tsx"
+        }
+      ]
+    },
+    {
+      "name": "switch",
+      "type": "registry:ui",
+      "title": "Switch",
+      "description": "The FIVIC switch, on Radix. Only for something that takes effect the moment it flips. If the setting waits for a Save button, use a Checkbox. 28x16 with a 12px knob. On is --primary with a --primary-foreground knob, off is --secondary with a --card knob, disabled is --disabled with a --disabled-foreground knob. The knob is what tells off from disabled, because --secondary and --disabled are the same neutral step, so don't restyle it.",
+      "dependencies": [
+        "@radix-ui/react-switch"
+      ],
+      "files": [
+        {
+          "path": "registry/fivic/switch.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/switch.tsx"
+        }
+      ]
+    },
+    {
+      "name": "avatar",
+      "type": "registry:ui",
+      "title": "Avatar",
+      "description": "A person, as initials or a photo, on Radix. Sizes are default (26px) and sm (20px, inside something dense like a question card, a citation or an RFI row). --accent fill, --border stroke, initials in --accent-foreground. The initials are 11px at weight 600 with zero tracking, which is off the type scale on purpose, because caption's 2% tracking drags centred initials left. That size is written once, inside this component, and nowhere else.",
+      "dependencies": [
+        "@radix-ui/react-avatar",
+        "class-variance-authority"
+      ],
+      "files": [
+        {
+          "path": "registry/fivic/avatar.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/avatar.tsx"
+        }
+      ]
+    },
+    {
+      "name": "segmented-control",
+      "type": "registry:ui",
+      "title": "Segmented control",
+      "description": "Two or three segments splitting a panel's width evenly, on Radix Tabs so it gets tablist roles and arrow keys. It replaces the panel's title rather than sitting under one. 38px tall with a --border-subtle rule along the bottom. The selected segment is --foreground with a 2px --brand bar underneath, the rest are --muted-foreground. Labels are text-label and don't change weight when selected, since that shifted the width by a pixel. Counts go in the label through the count prop, on text-caption in --muted-foreground, never in a badge.",
+      "dependencies": [
+        "@radix-ui/react-tabs"
+      ],
+      "files": [
+        {
+          "path": "registry/fivic/segmented-control.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/segmented-control.tsx"
+        }
+      ]
+    },
+    {
+      "name": "split-divider",
+      "type": "registry:ui",
+      "title": "Split divider",
+      "description": "The bar between two resizable panes, on react-resizable-panels v4, which already does double click to reset, keyboard resizing and a remembered layout. SplitGroup takes splits=\"top and bottom\" or \"left and right\", named for what gets split rather than which way the bar runs, and maps it to the library's orientation. A 5px --border-subtle bar with a 34x14 handle at radius-sm (--card fill, --border stroke, 12px grip) and 11px of grab area. The app still owes minSize on both panels, a snap to a floor within 24px, a visible collapse control and the split remembered per person starting at 55%. Panel sizes in v4 are pixels as numbers and percentages as strings.",
+      "dependencies": [
+        "react-resizable-panels@^4",
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "registry/fivic/split-divider.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/split-divider.tsx"
+        }
+      ]
     }
   ]
 }

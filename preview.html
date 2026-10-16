@@ -40,12 +40,14 @@
   .skins{display:grid;grid-template-columns:1fr 1fr;gap:14px}
   @media (max-width:760px){.skins{grid-template-columns:1fr}.sw{grid-template-columns:repeat(6,1fr)}}
   .skin{--bg:#F8FAFC;--card:#fff;--fg:#061116;--mut:#5E686C;--bd:#D0D7D9;--bds:#E3E8EA;--in:#8A9498;
-        --pri:#177B91;--prifg:#fff;--brand:#2997B0;--acc:#E3E8EA;
+        --pri:#177B91;--prifg:#fff;--brand:#2997B0;--acc:#E3E8EA;--accfg:#152227;
+        --sec:#E3E8EA;--dis:#E3E8EA;--disfg:#7C868A;
         --wbg:#FFF6EA;--wfg:#7E4A00;--wbd:#FCD8AC;--obg:#F0FBF2;--ofg:#1F673A;--obd:#C2EBCB;
         --ibg:#EFFAFD;--ifg:#126273;--ibd:#BEE7F2;--hl:#FCD8AC;--hlfg:#392100;
         border:1px solid var(--pg-line);border-radius:4px;overflow:hidden}
   .skin.dark{--bg:#061116;--card:#152227;--fg:#F2F5F6;--mut:#9EA6AA;--bd:#2F3B41;--bds:#29353A;--in:#687276;
-        --pri:#3FA7C1;--prifg:#0B2B33;--brand:#3FA7C1;--acc:#29353A;
+        --pri:#3FA7C1;--prifg:#0B2B33;--brand:#3FA7C1;--acc:#29353A;--accfg:#F8FAFC;
+        --sec:#29353A;--dis:#29353A;--disfg:#7C868A;
         --wbg:#392100;--wfg:#F4BE77;--wbd:#7E4A00;--obg:#0F2E19;--ofg:#9ADBAB;--obd:#1F673A;
         --ibg:#0B2B33;--ifg:#94D5E7;--ibd:#126273;--hl:#7E4A00;--hlfg:#FFEBD3}
   .skin>h3{margin:0;padding:8px 13px;font:600 10px/1.4 Inter,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--pg-ink2);background:var(--pg-sunk);border-bottom:1px solid var(--pg-line)}
@@ -68,7 +70,43 @@
   .btn.s{border-color:var(--bd)}
   .btn.g{color:var(--mut)}
   .btn.sm{height:28px;padding:0 9px}
-  .fld{height:32px;flex:1 1 150px;display:flex;align-items:center;padding:0 10px;border:1px solid var(--in);border-radius:4px;background:var(--card);color:var(--mut);font-size:12.5px}
+  .fld{height:32px;flex:1 1 150px;display:flex;align-items:center;gap:6px;padding:0 10px;border:1px solid var(--in);border-radius:4px;background:var(--card);color:var(--mut);font-size:13px;line-height:19px}
+  .fld svg{width:14px;height:14px;flex:none}
+  .fld.val{color:var(--fg)}
+  .fld.dis{background:var(--dis);border-color:transparent;color:var(--disfg)}
+  .ctl{display:flex;align-items:center;gap:8px;min-height:36px;padding:0 13px;border-bottom:1px solid var(--bds);font:500 12px/16px Inter,sans-serif;letter-spacing:.01em}
+  .ctl:last-child{border-bottom:0}
+  .ctl .tg{margin-left:auto}
+  .cb{width:13px;height:13px;flex:none;border:1px solid var(--in);border-radius:2px;display:inline-flex;align-items:center;justify-content:center}
+  .cb svg{width:10px;height:10px;display:none}
+  .cb.on{background:var(--pri);border-color:var(--pri);color:var(--prifg)}
+  .cb.dis{background:var(--dis);border-color:transparent;color:var(--disfg)}
+  .cb.on svg,.cb.dis.on svg{display:block}
+  .tg{width:28px;height:16px;flex:none;border-radius:999px;background:var(--sec);position:relative}
+  .tg::after{content:"";position:absolute;top:2px;left:2px;width:12px;height:12px;border-radius:50%;background:var(--card)}
+  .tg.on{background:var(--pri)}
+  .tg.on::after{left:14px;background:var(--prifg)}
+  .tg.dis{background:var(--dis)}
+  .tg.dis::after{background:var(--disfg)}
+  .dim{color:var(--disfg)}
+  .av{width:26px;height:26px;flex:none;border-radius:50%;background:var(--acc);border:1px solid var(--bd);color:var(--accfg);font:600 11px/1 Inter,sans-serif;letter-spacing:0;display:inline-flex;align-items:center;justify-content:center}
+  .av.sm{width:20px;height:20px}
+  .seg{display:flex;height:38px;border-bottom:1px solid var(--bds)}
+  .seg span{flex:1;position:relative;display:inline-flex;align-items:center;justify-content:center;gap:6px;font:500 12px/16px Inter,sans-serif;letter-spacing:.01em;color:var(--mut)}
+  .seg span.on{color:var(--fg)}
+  .seg span.on::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--brand)}
+  .seg em{font-style:normal;font-weight:400;font-size:11px;line-height:15px;letter-spacing:.02em;color:var(--mut);font-variant-numeric:tabular-nums}
+  .qa{display:flex;gap:8px;align-items:center;padding:8px 13px;border-bottom:1px solid var(--bds);min-height:36px;font-size:13px;line-height:19px}
+  .qa:last-child{border-bottom:0}
+  .split{display:flex;height:112px}
+  .split.tb{flex-direction:column;height:150px}
+  .pane{flex:1 1 0;min-width:0;min-height:0;padding:9px 13px;font-size:12px;color:var(--mut)}
+  .split.lr .pane:first-child{flex-grow:55}.split.lr .pane:last-child{flex-grow:45}
+  .bar{flex:none;background:var(--bds);display:flex;align-items:center;justify-content:center}
+  .split.lr .bar{width:5px}.split.tb .bar{height:5px}
+  .hdl{flex:none;border:1px solid var(--bd);background:var(--card);border-radius:3px;color:var(--mut);display:flex;align-items:center;justify-content:center;position:relative;z-index:1}
+  .split.lr .hdl{width:14px;height:34px}.split.tb .hdl{width:34px;height:14px}
+  .hdl svg{width:12px;height:12px}
   table{width:100%;border-collapse:collapse;font-size:12px;font-variant-numeric:tabular-nums}
   th{text-align:left;font:600 9.5px/1.5 Inter,sans-serif;letter-spacing:.07em;text-transform:uppercase;color:var(--mut);padding:6px 13px;border-bottom:1px solid var(--bd)}
   td{padding:0 13px;height:34px;border-bottom:1px solid var(--bds)}
@@ -136,6 +174,12 @@ document.getElementById("ramps").innerHTML=Object.keys(RAMPS).map(k=>
  RAMPS[k].map((h,i)=>`<div><i style="background:${h}"></i><span>${STEPS[i]}</span></div>`).join("")+
  `</div></div>`).join("");
 
+const SVG=(d)=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg>`;
+const TICK=SVG('<path d="M20 6 9 17l-5-5" stroke-width="3"/>');
+const SEARCH=SVG('<path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/>');
+const GRIPV=SVG('<circle cx="9" cy="12" r="1"/><circle cx="9" cy="5" r="1"/><circle cx="9" cy="19" r="1"/><circle cx="15" cy="12" r="1"/><circle cx="15" cy="5" r="1"/><circle cx="15" cy="19" r="1"/>');
+const GRIPH=SVG('<circle cx="12" cy="9" r="1"/><circle cx="19" cy="9" r="1"/><circle cx="5" cy="9" r="1"/><circle cx="12" cy="15" r="1"/><circle cx="19" cy="15" r="1"/><circle cx="5" cy="15" r="1"/>');
+
 const STAGE=`
 <div class="card">
   <h4>Documents<em>14 files · 3 unsorted</em></h4>
@@ -160,6 +204,40 @@ const STAGE=`
     </tbody>
     <tfoot><tr><td>Subtotal</td><td class="r">2,770.15</td><td class="r"></td><td class="r">195,901.34</td></tr></tfoot>
   </table>
+</div>
+<div class="card">
+  <div class="seg" role="tablist"><span class="on">Questions <em>10</em></span><span>RFIs <em>15</em></span></div>
+  <div class="qa"><span class="av">JM</span>Which areas need moisture testing?</div>
+  <div class="qa"><span class="av">AK</span>Is the gym floor sprung or on slab?</div>
+  <div class="qa"><span class="av sm">RT</span>Coving height in the change rooms?</div>
+</div>
+<div class="card">
+  <h4>Settings</h4>
+  <div class="ctl"><span class="cb on">${TICK}</span>Include superseded revisions</div>
+  <div class="ctl"><span class="cb"></span>Only documents with questions</div>
+  <div class="ctl dim"><span class="cb dis on">${TICK}</span>Lock the finishes schedule</div>
+  <div class="ctl">Show page numbers<span class="tg on"></span></div>
+  <div class="ctl">Highlight search hits<span class="tg"></span></div>
+  <div class="ctl dim">Sync with the estimating system<span class="tg dis"></span></div>
+  <div style="padding:10px 13px;display:grid;gap:8px">
+    <span class="fld">${SEARCH}Search documents</span>
+    <span class="fld val">Werribee Secondary, stage 2</span>
+    <span class="fld dis">Project number</span>
+  </div>
+</div>
+<div class="card">
+  <div class="split lr">
+    <div class="pane">Document, 55%</div>
+    <div class="bar"><span class="hdl">${GRIPV}</span></div>
+    <div class="pane">Questions</div>
+  </div>
+</div>
+<div class="card">
+  <div class="split tb">
+    <div class="pane">Drawing</div>
+    <div class="bar"><span class="hdl">${GRIPH}</span></div>
+    <div class="pane">Take-off lines</div>
+  </div>
 </div>
 <div class="btns">
   <button class="btn p">Save</button><button class="btn s">Export CSV</button><button class="btn g sm">History</button>
