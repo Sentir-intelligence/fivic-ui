@@ -188,6 +188,25 @@ and follow it. The components and screens are in the Figma Platform file,
 01cohbqiutxB8qfCr3ynOU.
 ```
 
+## What stays in the app
+
+The Figma file draws more components than this registry ships, and that is on
+purpose. Anything built around FIVIC's own data is app level. Figma marks each
+one "not in the registry. Write it in fivic-prod, against real data", because
+the props should come out of a built page rather than a mockup. Two sections
+on the Components page hold them.
+
+- **FIVIC OS**: FolderRow, DocRow, Citation, SearchResult, RfiRow, RfiAnswer,
+  QuestionCard, RevisionCard, MobileHeader, MobileTabBar and GroupHeader.
+- **Context map**: Finish code, and the Map / components set. That is
+  Provenance, Finish chip, Priced line, Link label, Lane pill, Lane header,
+  Take-off finish row, Scope item, Category header, Scope card, Evidence row,
+  Proposed link, Provenance popover, Relationship popover, New scope item,
+  Library item, Review item and Legend.
+
+Build them in the app out of the components here. If one of them turns out to
+be needed in a second app, that's when it comes into the registry.
+
 ## Status
 
 `v0.2.0`, draft. Still open:
@@ -196,11 +215,7 @@ and follow it. The components and screens are in the Figma Platform file,
 - Chart colours are a placeholder. Five hues are reserved and they pass
   contrast, but the set should be settled against real quote and pipeline
   data rather than guessed at now.
-- Domain components are designed and not yet written. DocRow, FolderRow,
-  Citation, QuestionCard, RfiRow, RfiAnswer and RevisionCard all sit in the
-  Figma file and none of them are in the registry. They come across once the
-  screens stop moving, so the props come out of a built page rather than a
-  mockup. The quantity table is the one that hasn't been designed at all.
+- The quantity table hasn't been designed at all.
 - `title-lg`, `display` and `display-lg` aren't on a working screen. Three
   steps earning nothing so far. Either something needs them or they come out,
   before somebody reaches for one by accident.

@@ -200,8 +200,26 @@ The code below is the Figma plugin API, which is what the Figma MCP's
 - **Components** holds every component. Use instances. Don't draw new ones,
   and don't add a component without being asked.
 - **Archive** is kept for reference. Don't build from it.
-- **Iterations** is work in progress. Nothing there is settled, so don't copy
-  from it into Desktop or Mobile unless you're asked to.
+- **Iterations** is work in progress, and right now that is the context map.
+  Nothing there is settled, so don't copy from it into Desktop or Mobile
+  unless you're asked to. Its UX paths and card specs sections are the
+  exception for the front end: read them before building any of the context
+  map, because they say how it is meant to behave.
+
+The Components page has three sections, and which one a component sits in
+tells you where its code lives.
+
+- **fivic-ui** is exactly what this registry ships, one for one. If it's in
+  that section, `npx shadcn add` it.
+- **FIVIC OS** and **Context map** are app level. They're written in the app
+  against real data, not installed from here, so the props come out of a
+  built page rather than a mockup.
+
+Every component description in Figma follows one format, in uppercase labels
+so a person or an agent can find the line they want. `CODE`, `PROPS`,
+`GEOMETRY` and `TOKENS` always, in that order, then `DATA`, `STATES`, `WHEN`,
+`RULE` or `CLICK` where they apply. Write new descriptions the same way, and
+read `CODE` first: it says whether to install the thing or write it.
 
 Type is the eleven `fivic/*` text styles and nothing else, with no local
 overrides. Colour is always a bound variable rather than a raw fill, so

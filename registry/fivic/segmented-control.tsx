@@ -14,7 +14,8 @@ import { cn } from "@/lib/utils"
  * Built on Radix Tabs, because that is what it is: one of a few views of the
  * same panel. That gets the tablist roles and arrow key movement for free.
  *
- * - 38px tall, with a `--border-subtle` rule along the bottom.
+ * - 38px tall, with a `--border-subtle` rule along the bottom, and 12px of
+ *   side padding on each segment so a long label never runs into the next.
  * - The selected segment is `--foreground` with a 2px `--brand` bar under it.
  *   The bar has no words on it, so it is `--brand` rather than `--primary`.
  * - Unselected segments are `--muted-foreground`.
@@ -74,7 +75,7 @@ function SegmentedControlItem({
     <TabsPrimitive.Trigger
       data-slot="segmented-control-item"
       className={cn(
-        "relative inline-flex min-w-0 flex-1 items-center justify-center gap-1.5 " +
+        "relative inline-flex min-w-0 flex-1 items-center justify-center gap-1.5 px-3 " +
           "whitespace-nowrap text-label text-muted-foreground transition-colors outline-none " +
           "hover:text-foreground " +
           "focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-ring " +
