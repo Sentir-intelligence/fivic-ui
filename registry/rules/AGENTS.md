@@ -58,6 +58,12 @@ No hex, rgb, hsl or oklch outside the theme. Use the named ones, so
 the colour you want isn't there yet, add a token to the theme in both modes
 rather than dropping a one off value inline.
 
+`--revision` is the violet for anything a newer revision of a document
+changed: the replaced document, the finishes it touches, the banner that says
+so, and the lines between them. Use it for nothing else, so violet always
+means "a document changed under this". Soft versions are the token at an
+opacity, `bg-revision/10` and `border-revision/40`, not new tokens.
+
 Three border weights, and they're not decoration. `border-subtle` for
 dividers that don't matter, `border` as the default that still shows up
 inside a busy table, `border-strong` for the splits that hold the layout
@@ -182,7 +188,16 @@ you need an asset, commit it and serve it from our own origin.
 ## One icon family
 
 Lucide. Only add your own SVG for brand shapes lucide hasn't got, and put it
-in the registry so every app gets it. Don't mix icon libraries.
+in the registry so every app gets it. Don't mix icon libraries. The two we've
+had to draw so far are in the `icons` item: `CloudMarkupIcon` and
+`LengthIcon`. Every icon in the Figma Icons page has its import in its
+description, so read that rather than guessing from the Figma name (`kebab`
+is `EllipsisVertical`, `warn` is `TriangleAlert`, `clip` is `Clipboard`).
+
+Icons are 16px at stroke width 1.5, which draws a 1px line. The theme sets
+that on every lucide svg, so don't pass `strokeWidth`. If one icon really
+does need a different weight, give it a `[stroke-width:N]` class, because the
+prop loses to the theme's rule.
 
 An icon before the label is just `children`. An icon after it is the
 `trailingIcon` prop, and it is for a button that opens something rather than

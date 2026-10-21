@@ -7,7 +7,7 @@
       "name": "theme",
       "type": "registry:style",
       "title": "FIVIC Theme",
-      "description": "The Flooring Innovations Victoria brand as tokens, worked out in OKLCH from the logo and fivic.net. Install this first, once per app, before anything else. Five ramps built on the same set of lightness steps, a disabled pair so no control has to fall back on an opacity, every named colour in light and dark, a 14px type scale, 4px radius and tighter spacing than shadcn ships. One thing to watch: --brand (#2997B0) and --primary (#177B91) are different colours on purpose. Brand is identity only and primary carries anything with words on it, because white on the logo teal fails WCAG AA. See AGENTS.md. Install the fonts item alongside this.",
+      "description": "The Flooring Innovations Victoria brand as tokens, worked out in OKLCH from the logo and fivic.net. Install this first, once per app, before anything else. Five ramps built on the same set of lightness steps, a disabled pair so no control has to fall back on an opacity, every named colour in light and dark, a --revision violet for anything a newer document revision changed, lucide drawn at 1.5 stroke everywhere, a 14px type scale, 4px radius and tighter spacing than shadcn ships. One thing to watch: --brand (#2997B0) and --primary (#177B91) are different colours on purpose. Brand is identity only and primary carries anything with words on it, because white on the logo teal fails WCAG AA. See AGENTS.md. Install the fonts item alongside this.",
       "dependencies": [
         "tw-animate-css"
       ],
@@ -162,6 +162,8 @@
           "info-soft": "var(--color-brand-50)",
           "info-soft-foreground": "var(--color-brand-800)",
           "info-soft-border": "var(--color-brand-200)",
+          "revision": "oklch(0.5410 0.2810 293)",
+          "revision-foreground": "#ffffff",
           "border-subtle": "var(--color-neutral-200)",
           "border": "var(--color-neutral-300)",
           "border-strong": "oklch(0.8450 0.0090 225)",
@@ -221,6 +223,8 @@
           "info-soft": "var(--color-brand-950)",
           "info-soft-foreground": "var(--color-brand-300)",
           "info-soft-border": "var(--color-brand-800)",
+          "revision": "oklch(0.7020 0.1830 293)",
+          "revision-foreground": "oklch(0.2830 0.1410 291)",
           "border-subtle": "var(--color-neutral-800)",
           "border": "oklch(0.3450 0.0190 225)",
           "border-strong": "oklch(0.4100 0.0200 225)",
@@ -289,6 +293,9 @@
           "::selection": {
             "background-color": "var(--highlight)",
             "color": "var(--highlight-foreground)"
+          },
+          "svg.lucide": {
+            "stroke-width": "1.5"
           }
         }
       }
@@ -334,6 +341,22 @@
           "path": "registry/fivic/logo.tsx",
           "type": "registry:component",
           "target": "components/brand/logo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "icons",
+      "type": "registry:ui",
+      "title": "Custom Icons",
+      "description": "The two icons lucide hasn't got, drawn on the lucide grid so they take the same props: CloudMarkupIcon for the revision cloud markup tool and LengthIcon for the length measure tool. Every other icon in the Figma Icons page is lucide, and its description there gives the import.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "registry/fivic/icons.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/icons.tsx"
         }
       ]
     },
@@ -404,7 +427,7 @@
       "name": "checkbox",
       "type": "registry:ui",
       "title": "Checkbox",
-      "description": "The FIVIC checkbox, on Radix. 13px rather than shadcn's 16px, because it sits in 36px rows next to a 12px label, at radius-xs. Checked fills with --primary and carries the tick in --primary-foreground, unchecked is a bare --input border. 13px is too small to aim at, so always wrap it in a label or make the row the label, and the words become the hit area. Disabled drops the checked fill to --disabled, the same way a disabled Button drops its variant.",
+      "description": "The FIVIC checkbox, on Radix. 13px rather than shadcn's 16px, because it sits in 36px rows next to a 12px label, at radius-xs. Checked fills with --primary and carries the tick in --primary-foreground, unchecked is a bare --input border. 13px is too small to aim at, so always wrap it in a label or make the row the label, and the words become the hit area. Disabled drops the checked fill to --disabled, the same way a disabled Button drops its variant. The tick is 1.5px, the same weight as the indeterminate dash, and the dash has round ends.",
       "dependencies": [
         "@radix-ui/react-checkbox",
         "lucide-react"

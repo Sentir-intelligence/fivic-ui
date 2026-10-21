@@ -61,9 +61,11 @@ function Checkbox({
         data-slot="checkbox-indicator"
         className="group flex items-center justify-center text-current"
       >
+        {/* stroke-width 4 on a 9px icon draws at 1.5px, the dash's weight.
+            It's a class, not the strokeWidth prop, because the theme sets
+            1.5 on every lucide svg and a class is what beats it. */}
         <Check
-          className="size-2.25 group-data-[state=indeterminate]:hidden"
-          strokeWidth={3}
+          className="size-2.25 [stroke-width:4] group-data-[state=indeterminate]:hidden"
           aria-hidden="true"
         />
         {/* A drawn bar rather than lucide's Minus, which can't come out at
@@ -71,7 +73,7 @@ function Checkbox({
         <span
           data-slot="checkbox-dash"
           aria-hidden="true"
-          className="hidden h-[1.5px] w-1.75 bg-current group-data-[state=indeterminate]:block"
+          className="hidden h-[1.5px] w-1.75 rounded-full bg-current group-data-[state=indeterminate]:block"
         />
       </CheckboxPrimitive.Indicator>
     </CheckboxPrimitive.Root>

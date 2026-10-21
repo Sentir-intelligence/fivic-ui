@@ -172,6 +172,8 @@
   --info-soft: var(--color-brand-50);
   --info-soft-foreground: var(--color-brand-800);
   --info-soft-border: var(--color-brand-200);
+  --revision: oklch(0.5410 0.2810 293);
+  --revision-foreground: #ffffff;
   --border-subtle: var(--color-neutral-200);
   --border: var(--color-neutral-300);
   --border-strong: oklch(0.8450 0.0090 225);
@@ -232,6 +234,8 @@
   --info-soft: var(--color-brand-950);
   --info-soft-foreground: var(--color-brand-300);
   --info-soft-border: var(--color-brand-800);
+  --revision: oklch(0.7020 0.1830 293);
+  --revision-foreground: oklch(0.2830 0.1410 291);
   --border-subtle: var(--color-neutral-800);
   --border: oklch(0.3450 0.0190 225);
   --border-strong: oklch(0.4100 0.0200 225);
@@ -292,6 +296,8 @@
   --color-info-soft: var(--info-soft);
   --color-info-soft-foreground: var(--info-soft-foreground);
   --color-info-soft-border: var(--info-soft-border);
+  --color-revision: var(--revision);
+  --color-revision-foreground: var(--revision-foreground);
   --color-border-subtle: var(--border-subtle);
   --color-border: var(--border);
   --color-border-strong: var(--border-strong);
@@ -359,5 +365,8 @@
   ::selection {
     background-color: var(--highlight);
     color: var(--highlight-foreground);
+  }
+  svg.lucide {
+    stroke-width: 1.5;
   }
 }
