@@ -32,13 +32,17 @@ import { cn } from "@/lib/utils"
  * because the only thing it has left to say is that you cannot press it.
  * Ghost is the exception and keeps its transparent fill, since giving it a
  * slab would make it louder switched off than switched on.
+ *
+ * A bordered variant keeps its stroke when it's disabled, in `--disabled`, as
+ * the Figma file draws it. Stroke and slab are the same colour, so it reads
+ * as one shape.
  */
 const buttonVariants = cva(
   "inline-flex items-center justify-center gap-1.5 whitespace-nowrap rounded-md " +
     "text-label transition-colors " +
     "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring " +
     "disabled:pointer-events-none disabled:bg-disabled disabled:text-disabled-foreground " +
-    "disabled:border-transparent " +
+    "disabled:border-disabled " +
     "[&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
